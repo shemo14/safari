@@ -119,6 +119,14 @@ const ar = {
 	'profile'                   : 'حسابي',
 	'logout'                    : 'تسجيل الخروج',
 	'cities'                    : 'المدن',
+	'selectSafaryLocation'      : 'يرجي تحديد موقع السفاري الذي تريد فيه الخدمة',
+	'continue'                  : 'استكمال',
+	'chooseTripType'            : 'اختر نوع الرحلة',
+	'wild_kashta'               : 'كشتة برية',
+	'sea_trip'                  : 'رحلة بحرية',
+	'providers'                 : 'مقدمين الخدمات',
+	'additions'                 : 'اضافات',
+	'safari'                    : 'سفاري',
 };
 
 export default ar;

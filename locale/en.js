@@ -119,6 +119,14 @@ const en = {
     'profile'                   : 'Profile',
     'logout'                    : 'Logout',
     'cities'                    : 'Cities',
+	'selectSafaryLocation'      : 'Please select safari location where you want the service',
+	'continue'                  : 'Continue',
+	'chooseTripType'            : 'Choose Trip Type',
+	'wild_kashta'               : 'Wild Kashta',
+	'sea_trip'                  : 'Sea Trip',
+	'providers'                 : 'Providers',
+	'additions'                 : 'Additions',
+	'safari'                    : 'SAFARI',
 };
 
 export default en;

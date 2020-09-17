@@ -14,7 +14,7 @@ import styles from '../../assets/styles'
 import i18n from "../../locale/i18n";
 import COLORS from "../consts/colors";
 import {useSelector, useDispatch} from 'react-redux';
-import {register} from '../actions';
+// import {register} from '../actions';
 
 function Register({navigation}) {
 	const lang      = useSelector(state => state.lang.lang);
@@ -38,7 +38,7 @@ function Register({navigation}) {
         const unsubscribe = navigation.addListener('focus', () => {
             setSpinner(false)
         });
-		setSpinner(false)
+		setSpinner(false);
         return unsubscribe;
 	}, [navigation, spinner]);
 
@@ -89,7 +89,7 @@ function Register({navigation}) {
 				duration    : 3000,
 				textStyle   	: {
 					color       	: "white",
-					fontFamily  	: 'sukar',
+					fontFamily  	: 'ArbFONTS',
 					textAlign   	: 'center'
 				}
 			});
@@ -99,12 +99,13 @@ function Register({navigation}) {
 	};
 
 	function onRegister(){
+		navigation.navigate('activationCode');
 		const err = validate();
 
 		if (!err){
 			setSpinner(true);
 		    const data = { username, phone, email, password, lang };
-			dispatch(register(data, navigation));
+			// dispatch(register(data, navigation));
         }
 
     }
@@ -122,102 +123,99 @@ function Register({navigation}) {
     return (
         <Container>
 			{renderLoader()}
-            <ImageBackground source={  I18nManager.isRTL ? require('../../assets/images/bg_languge.png') :  require('../../assets/images/bg_inverse.png')} style={[styles.bgFullWidth]}>
-                <Content contentContainerStyle={[styles.bgFullWidth , styles.paddingTop_50]}>
+			<Content contentContainerStyle={[styles.bgFullWidth , styles.paddingTop_30]}>
 
-                    <View style={[styles.position_R , styles.bgFullWidth, styles.marginVertical_15,
-                        styles.marginVertical_25, styles.Width_100, styles.flexCenter]}>
+				<View style={[styles.position_R , styles.bgFullWidth, styles.marginVertical_15, styles.Width_100, styles.flexCenter]}>
 
-                        <View style={[styles.Width_100 , styles.paddingHorizontal_30 , styles.marginBottom_50]}>
-                            <TouchableOpacity onPress={() => navigation.goBack()} style={[styles.marginBottom_25 , styles.transform , styles.alignStart]}>
-                                <Image source={require('../../assets/images/back.png')} style={[styles.smImage]} resizeMode={'contain'} />
-                            </TouchableOpacity>
+					<View style={[styles.Width_100 , styles.paddingHorizontal_30 , styles.marginBottom_20]}>
+						<TouchableOpacity onPress={() => navigation.goBack()} style={[styles.marginBottom_25 , styles.transform , styles.alignStart]}>
+							<Image source={require('../../assets/images/back.png')} style={[styles.smImage]} resizeMode={'contain'} />
+						</TouchableOpacity>
 
-                            <Text style={[styles.textBold , styles.text_black , styles.textSize_18 , styles.marginBottom_5, styles.alignStart]}>{ i18n.t('register') }</Text>
-                            {/*<Text style={[styles.textRegular , styles.text_gray , styles.textSize_13]}>{ i18n.t('loginText') }</Text>*/}
-                        </View>
+						<Text style={[styles.textBold , styles.text_black , styles.textSize_18 , styles.marginBottom_5, styles.alignStart]}>{ i18n.t('register') }</Text>
+						{/*<Text style={[styles.textRegular , styles.text_gray , styles.textSize_13]}>{ i18n.t('loginText') }</Text>*/}
+					</View>
 
-                        <KeyboardAvoidingView behavior={'absolute'} style={[styles.keyboardAvoid]}>
-                            <Form style={[styles.Width_100 , styles.flexCenter, styles.marginVertical_10, styles.Width_90]}>
-                                <View style={[styles.position_R, styles.height_70, styles.flexCenter, styles.marginBottom_5 ]}>
-                                    <Item floatingLabel style={[styles.item, styles.position_R, { right: 5 }]}>
-                                        <Label style={[styles.label, styles.textRegular ,{ color:usernameStatus === 1 ?  COLORS.blue :  COLORS.gray}]}>{ i18n.t('username') }</Label>
-                                        <Input style={[styles.input, styles.height_50, (usernameStatus === 1 ? styles.Active : styles.noActive)]}
-                                               onChangeText={(username) => setUsername(username)}
-                                               onBlur={() => unActiveInput('username')}
-                                               onFocus={() => activeInput('username')}
-                                        />
-                                    </Item>
-                                </View>
+					<KeyboardAvoidingView behavior={'absolute'} style={[styles.keyboardAvoid]}>
+						<Form style={[styles.Width_100 , styles.flexCenter, styles.marginVertical_10, styles.Width_90]}>
+							<View style={[styles.position_R, styles.height_70, styles.flexCenter, styles.marginBottom_5 ]}>
+								<Item floatingLabel style={[styles.item, styles.position_R ]}>
+									<Label style={[styles.label, styles.textRegular ,{ color:usernameStatus === 1 ?  COLORS.blue :  COLORS.gray}]}>{ i18n.t('username') }</Label>
+									<Input style={[styles.input, styles.height_50, (usernameStatus === 1 ? styles.Active : styles.noActive)]}
+										onChangeText={(username) => setUsername(username)}
+										onBlur={() => unActiveInput('username')}
+										onFocus={() => activeInput('username')}
+									/>
+								</Item>
+							</View>
 
-                                <View style={[styles.position_R, styles.height_70, styles.flexCenter, styles.marginBottom_5 ]}>
-                                    <Item floatingLabel style={[styles.item, styles.position_R, { right: 5 }]}>
-                                        <Label style={[styles.label, styles.textRegular ,{ color:phoneStatus === 1 ?  COLORS.blue :  COLORS.gray}]}>{ i18n.t('phone') }</Label>
-                                        <Input style={[styles.input, styles.height_50, (phoneStatus === 1 ? styles.Active : styles.noActive)]}
-                                               onChangeText={(phone) => setPhone(phone)}
-                                               onBlur={() => unActiveInput('phone')}
-                                               onFocus={() => activeInput('phone')}
-                                               keyboardType={'number-pad'}
-                                        />
-                                    </Item>
-                                </View>
+							<View style={[styles.position_R, styles.height_70, styles.flexCenter, styles.marginBottom_5 ]}>
+								<Item floatingLabel style={[styles.item, styles.position_R ]}>
+									<Label style={[styles.label, styles.textRegular ,{ color:phoneStatus === 1 ?  COLORS.blue :  COLORS.gray}]}>{ i18n.t('phone') }</Label>
+									<Input style={[styles.input, styles.height_50, (phoneStatus === 1 ? styles.Active : styles.noActive)]}
+										onChangeText={(phone) => setPhone(phone)}
+										onBlur={() => unActiveInput('phone')}
+										onFocus={() => activeInput('phone')}
+										keyboardType={'number-pad'}
+									/>
+								</Item>
+							</View>
 
-                                <View style={[styles.position_R, styles.height_70, styles.flexCenter, styles.marginBottom_5 ]}>
-                                    <Item floatingLabel style={[styles.item, styles.position_R, { right: 5 }]}>
-                                        <Label style={[styles.label, styles.textRegular ,{ color:emailStatus === 1 ?  COLORS.blue :  COLORS.gray}]}>{ i18n.t('email') }</Label>
-                                        <Input style={[styles.input, styles.height_50, (emailStatus === 1 ? styles.Active : styles.noActive)]}
-                                               onChangeText={(email) => setEmail(email)}
-                                               onBlur={() => unActiveInput('email')}
-                                               onFocus={() => activeInput('email')}
-                                               keyboardType={'email-address'}
-                                        />
-                                    </Item>
-                                </View>
+							<View style={[styles.position_R, styles.height_70, styles.flexCenter, styles.marginBottom_5 ]}>
+								<Item floatingLabel style={[styles.item, styles.position_R, { right: 5 }]}>
+									<Label style={[styles.label, styles.textRegular ,{ color:emailStatus === 1 ?  COLORS.blue :  COLORS.gray}]}>{ i18n.t('email') }</Label>
+									<Input style={[styles.input, styles.height_50, (emailStatus === 1 ? styles.Active : styles.noActive)]}
+										onChangeText={(email) => setEmail(email)}
+										onBlur={() => unActiveInput('email')}
+										onFocus={() => activeInput('email')}
+										keyboardType={'email-address'}
+									/>
+								</Item>
+							</View>
 
-                                <View style={[styles.position_R,  styles.height_70, styles.flexCenter, styles.marginBottom_5]}>
-                                    <Item floatingLabel style={[styles.item, styles.position_R, { right: 5 }]}>
-                                        <Label style={[styles.label ,{ color:passwordStatus === 1 ?  COLORS.blue :  COLORS.gray}]}>{ i18n.t('password') }</Label>
-                                        <Input
-                                            style={[styles.input, styles.height_50, (passwordStatus === 1 ? styles.Active : styles.noActive)]}
-                                            onChangeText={(password) => setPassword(password)}
-                                            onBlur={() => unActiveInput('password')}
-                                            onFocus={() => activeInput('password')}
-                                            secureTextEntry
-                                        />
-                                    </Item>
-                                </View>
+							<View style={[styles.position_R,  styles.height_70, styles.flexCenter, styles.marginBottom_5]}>
+								<Item floatingLabel style={[styles.item, styles.position_R ]}>
+									<Label style={[styles.label ,{ color:passwordStatus === 1 ?  COLORS.blue :  COLORS.gray}]}>{ i18n.t('password') }</Label>
+									<Input
+										style={[styles.input, styles.height_50, (passwordStatus === 1 ? styles.Active : styles.noActive)]}
+										onChangeText={(password) => setPassword(password)}
+										onBlur={() => unActiveInput('password')}
+										onFocus={() => activeInput('password')}
+										secureTextEntry
+									/>
+								</Item>
+							</View>
 
-                                <View style={[styles.position_R,  styles.height_70, styles.flexCenter, styles.marginBottom_5]}>
-                                    <Item floatingLabel style={[styles.item, styles.position_R, { right: 5 }]}>
-                                        <Label style={[styles.label ,{ color:confirmPassStatus === 1 ?  COLORS.blue :  COLORS.gray}]}>{ i18n.t('confirmPass') }</Label>
-                                        <Input
-                                            style={[styles.input, styles.height_50, (confirmPassStatus === 1 ? styles.Active : styles.noActive)]}
-                                            onChangeText={(confirmPass) => setConfirmPass(confirmPass)}
-                                            onBlur={() => unActiveInput('confirmPass')}
-                                            onFocus={() => activeInput('confirmPass')}
-                                            secureTextEntry
-                                        />
-                                    </Item>
-                                </View>
+							<View style={[styles.position_R,  styles.height_70, styles.flexCenter, styles.marginBottom_5]}>
+								<Item floatingLabel style={[styles.item, styles.position_R ]}>
+									<Label style={[styles.label ,{ color:confirmPassStatus === 1 ?  COLORS.blue :  COLORS.gray}]}>{ i18n.t('confirmPass') }</Label>
+									<Input
+										style={[styles.input, styles.height_50, (confirmPassStatus === 1 ? styles.Active : styles.noActive)]}
+										onChangeText={(confirmPass) => setConfirmPass(confirmPass)}
+										onBlur={() => unActiveInput('confirmPass')}
+										onFocus={() => activeInput('confirmPass')}
+										secureTextEntry
+									/>
+								</Item>
+							</View>
 
-                                <View>
-                                    <Text style={[styles.textRegular , styles.text_gray , styles.textSize_13]}>{ i18n.t('agreeTo') }</Text>
-                                </View>
+							<View>
+								<Text style={[styles.textRegular , styles.text_gray , styles.textSize_13]}>{ i18n.t('agreeTo') }</Text>
+							</View>
 
-                                <TouchableOpacity onPress={() => onRegister()} style={[styles.blueBtn , styles.Width_95]}>
-                                    <Text style={[styles.textRegular , styles.text_White , styles.textSize_16]}>{ i18n.t('register') }</Text>
-                                </TouchableOpacity>
+							<TouchableOpacity onPress={() => onRegister()} style={[styles.blueBtn , styles.Width_100]}>
+								<Text style={[styles.textRegular , styles.text_White , styles.textSize_16]}>{ i18n.t('register') }</Text>
+							</TouchableOpacity>
 
-                                <TouchableOpacity onPress={() => navigation.push('login')} style={[styles.rowCenter , styles.marginVertical_25]}>
-                                    <Text style={[styles.textRegular , styles.text_gray , styles.textSize_13]}>{ i18n.t('haveAcc') } </Text>
-                                    <Text style={[styles.textRegular , styles.text_blue , styles.textSize_13]}>{ i18n.t('loginNow') }</Text>
-                                </TouchableOpacity>
+							<TouchableOpacity onPress={() => navigation.push('login')} style={[styles.rowCenter , styles.marginVertical_25]}>
+								<Text style={[styles.textRegular , styles.text_gray , styles.textSize_13]}>{ i18n.t('haveAcc') } </Text>
+								<Text style={[styles.textRegular , styles.text_blue , styles.textSize_13]}>{ i18n.t('loginNow') }</Text>
+							</TouchableOpacity>
 
-                            </Form>
-                        </KeyboardAvoidingView>
-                    </View>
-                </Content>
-            </ImageBackground>
+						</Form>
+					</KeyboardAvoidingView>
+				</View>
+			</Content>
         </Container>
     );
 }
