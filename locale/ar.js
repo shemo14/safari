@@ -127,6 +127,11 @@ const ar = {
 	'providers'                 : 'مقدمين الخدمات',
 	'additions'                 : 'اضافات',
 	'safari'                    : 'سفاري',
+	'aboutAppIntro'             : 'جميع المعلومات الخاصة بالتطبيق',
+	'roles'                     : 'الشروط و الاحكام',
+	'contacts'                  : 'وسائل التواصل',
+	'socials'                   : 'وسائل التواصل الاجتماعي',
+	'contactsIntro'             : 'يمكن التواصل معنا عبر الوسائل التاليه',
 };
 
 export default ar;

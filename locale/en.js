@@ -127,6 +127,11 @@ const en = {
 	'providers'                 : 'Providers',
 	'additions'                 : 'Additions',
 	'safari'                    : 'SAFARI',
+	'aboutAppIntro'             : 'All Information About Safari',
+	'roles'                     : 'Roles & Polices',
+	'contacts'                  : 'Contacts',
+	'socials'                   : 'Socials',
+	'contactsIntro'             : 'Contact Us Through The Following Contacts',
 };
 
 export default en;

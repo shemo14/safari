@@ -427,7 +427,13 @@ const styles = ({
         elevation               : 3,
     },
 
-    // Styles Flex Box
+	footerIcon : {
+		width               : 20,
+		height              : 20,
+		resizeMode          :  "contain"
+	},
+
+	// Styles Flex Box
     keyboardAvoid: {
         width:'100%',
         height: null,
