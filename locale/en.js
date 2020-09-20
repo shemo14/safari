@@ -132,6 +132,11 @@ const en = {
 	'contacts'                  : 'Contacts',
 	'socials'                   : 'Socials',
 	'contactsIntro'             : 'Contact Us Through The Following Contacts',
+	'complaintIntro'            : 'Send Complaint To Mangers',
+	'complaintMsg'              : 'Complaint Msg',
+	'langIntro'                 : 'Change Current Language',
+	'changePassIntro'           : 'To Change Old Password',
+
 };
 
 export default en;

@@ -1256,7 +1256,7 @@ const styles = ({
         color               : COLORS.blue,
         paddingRight        : 20,
         paddingLeft         : 20,
-        textAlign           : 'right',
+        textAlign           : I18nManager.isRTL ? 'right' : 'left',
         fontFamily          : 'ArbFONTS',
         fontSize            : 15,
         top                 : 0,

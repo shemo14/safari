@@ -132,6 +132,10 @@ const ar = {
 	'contacts'                  : 'وسائل التواصل',
 	'socials'                   : 'وسائل التواصل الاجتماعي',
 	'contactsIntro'             : 'يمكن التواصل معنا عبر الوسائل التاليه',
+	'complaintIntro'            : 'ارسل شكوي للادارة',
+	'complaintMsg'              : 'نص الشكوي',
+	'langIntro'                 : 'لتغير لغة التطبيق الحالية',
+	'changePassIntro'           : 'لتغير كلمة المرور المقديمة',
 };
 
 export default ar;
