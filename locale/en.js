@@ -136,6 +136,11 @@ const en = {
 	'complaintMsg'              : 'Complaint Msg',
 	'langIntro'                 : 'Change Current Language',
 	'changePassIntro'           : 'To Change Old Password',
+	'guest'			            : 'Guest',
+	'seeOffer'                  : 'See offer',
+	'rateServ'                  : 'Please rate the service used',
+	'rateServTitle'             : 'Rate service',
+	'currentLocation'           : 'Current Location',
 
 };
 

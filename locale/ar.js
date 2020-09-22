@@ -136,6 +136,11 @@ const ar = {
 	'complaintMsg'              : 'نص الشكوي',
 	'langIntro'                 : 'لتغير لغة التطبيق الحالية',
 	'changePassIntro'           : 'لتغير كلمة المرور المقديمة',
+	'guest'			            : 'زائر',
+	'seeOffer'		            : 'عرض جديد',
+	'rateServ'                  : 'يرجي تقييم الخدمه المستخدمه',
+	'rateServTitle'             : 'تقييم الخدمه',
+	'currentLocation'           : 'الموقع الحالي',
 };
 
 export default ar;

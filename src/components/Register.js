@@ -14,7 +14,7 @@ import styles from '../../assets/styles'
 import i18n from "../../locale/i18n";
 import COLORS from "../consts/colors";
 import {useSelector, useDispatch} from 'react-redux';
-// import {register} from '../actions';
+import {register} from '../actions';
 
 function Register({navigation}) {
 	const lang      = useSelector(state => state.lang.lang);
@@ -22,13 +22,11 @@ function Register({navigation}) {
 
     const [username, setUsername] = useState('');
     const [phone, setPhone] = useState('');
-    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPass, setConfirmPass] = useState('');
 
     const [usernameStatus, setUsernameStatus] = useState(0);
     const [phoneStatus, setPhoneStatus] = useState(0);
-    const [emailStatus, setEmailStatus] = useState(0);
     const [passwordStatus, setPasswordStatus] = useState(0);
     const [confirmPassStatus, setConfirmPassStatus] = useState(0);
 
@@ -45,7 +43,6 @@ function Register({navigation}) {
     function activeInput(type) {
         if (type === 'username' || username !== '') setUsernameStatus(1);
         if (type === 'phone' || phone !== '')  setPhoneStatus(1);
-        if (type === 'email' || email !== '') setEmailStatus(1);
         if (type === 'password' || password !== '') setPasswordStatus(1);
         if (type === 'confirmPass' || confirmPass !== '') setConfirmPassStatus(1)
     }
@@ -53,7 +50,6 @@ function Register({navigation}) {
     function unActiveInput(type) {
         if (type === 'username' && username === '')  setUsernameStatus(0);
         if (type === 'phone' && phone === '') setPhoneStatus(0);
-        if (type === 'email' && email === '') setEmailStatus(0);
         if (type === 'password' && password === '') setPasswordStatus(0);
         if (type === 'confirmPass' && confirmPass === '') setConfirmPassStatus(0);
     }
@@ -71,9 +67,6 @@ function Register({navigation}) {
 		} else if (phone.length !== 10) {
 			isError     = true;
 			msg         = i18n.t('namereq');
-		} else if (email.length <= 0 || email.indexOf("@") === -1 || email.indexOf(".") === -1) {
-			isError     = true;
-			msg         = i18n.t('emailNotCorrect');
 		} else if (password.length < 6){
 			isError     = true;
 			msg         = i18n.t('passreq');
@@ -99,13 +92,12 @@ function Register({navigation}) {
 	};
 
 	function onRegister(){
-		navigation.navigate('activationCode');
 		const err = validate();
 
 		if (!err){
 			setSpinner(true);
-		    const data = { username, phone, email, password, lang };
-			// dispatch(register(data, navigation));
+		    const data = { username, phone, password, lang };
+			dispatch(register(data, navigation));
         }
 
     }
@@ -157,18 +149,6 @@ function Register({navigation}) {
 										onBlur={() => unActiveInput('phone')}
 										onFocus={() => activeInput('phone')}
 										keyboardType={'number-pad'}
-									/>
-								</Item>
-							</View>
-
-							<View style={[styles.position_R, styles.height_70, styles.flexCenter, styles.marginBottom_5 ]}>
-								<Item floatingLabel style={[styles.item, styles.position_R, { right: 5 }]}>
-									<Label style={[styles.label, styles.textRegular ,{ color:emailStatus === 1 ?  COLORS.blue :  COLORS.gray}]}>{ i18n.t('email') }</Label>
-									<Input style={[styles.input, styles.height_50, (emailStatus === 1 ? styles.Active : styles.noActive)]}
-										onChangeText={(email) => setEmail(email)}
-										onBlur={() => unActiveInput('email')}
-										onFocus={() => activeInput('email')}
-										keyboardType={'email-address'}
 									/>
 								</Item>
 							</View>

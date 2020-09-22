@@ -5,9 +5,9 @@ import styles from '../../assets/styles'
 import i18n from "../../locale/i18n";
 import COLORS from "../consts/colors";
 import {useSelector, useDispatch} from 'react-redux';
+import {userLogin} from '../actions';
 import * as Permissions from 'expo-permissions';
 import {Notifications} from 'expo'
-
 function Login({navigation}) {
 
     const lang = useSelector(state => state.lang.lang);
@@ -91,7 +91,7 @@ function Login({navigation}) {
     };
 
     function renderSubmit() {
-        if (password == '' || phone == '') {
+        if (password === '' || phone === '') {
             return (
                 <View style={[styles.blueBtn , styles.Width_100 , { backgroundColor:'#ccc' }]} >
                     <Text style={[styles.textRegular , styles.text_White , styles.textSize_16]}>{ i18n.t('login') }</Text>
@@ -111,7 +111,7 @@ function Login({navigation}) {
 
         if (!err){
             setSpinner(true);
-            // dispatch(userLogin(phone, password, deviceId , lang , navigation));
+            dispatch(userLogin(phone, password, deviceId , lang , navigation));
         }
     }
 

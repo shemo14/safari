@@ -5,7 +5,7 @@ import styles from '../../assets/styles'
 import i18n from "../../locale/i18n";
 import COLORS from "../consts/colors";
 import { useDispatch, useSelector } from 'react-redux'
-// import {checkPhone} from "../actions";
+import {checkPhone} from "../actions";
 
 function ForgetPass({navigation}) {
 
@@ -24,10 +24,8 @@ function ForgetPass({navigation}) {
     }
 
     function onForgetPassword() {
-        navigation.navigate('resetPass')
-		// dispatch(checkPhone(phone, lang, navigation));
+		dispatch(checkPhone(phone, lang, navigation));
 	}
-
 
     return (
         <Container>
