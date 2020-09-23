@@ -141,6 +141,7 @@ const en = {
 	'rateServ'                  : 'Please rate the service used',
 	'rateServTitle'             : 'Rate service',
 	'currentLocation'           : 'Current Location',
+    'complaintTitle'            : 'Complaint title',
 
 };
 

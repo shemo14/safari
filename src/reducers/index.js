@@ -6,6 +6,8 @@ import profile from './ProfileReducer';
 import about from './AboutReducer';
 import categories from './CategoriesReducer';
 import providers from './ProvidersReducer';
+import notifications from './NotificationsReducer';
+import favorites from './FavoritesReducer';
 
 
 export default combineReducers({
@@ -16,4 +18,6 @@ export default combineReducers({
 	about,
 	categories,
 	providers,
+	notifications,
+	favorites,
 });

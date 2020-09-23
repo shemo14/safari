@@ -1,4 +1,5 @@
 import React, { useState , useEffect } from "react";
+import {Text} from "react-native";
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import { AppLoading } from 'expo';
@@ -16,6 +17,15 @@ export default function App() {
 	const [isReady, setIsReady] = useState(false);
 
 	useEffect(() => {
+		if (Platform.OS === 'android') {
+			Notifications.createChannelAndroidAsync('orders', {
+				name: 'Chat messages',
+				sound: true,
+			});
+		}
+
+		if (Text.defaultProps == null) Text.defaultProps = {};
+		Text.defaultProps.allowFontScaling = false;
 		loadFont()
 	}, []);
 

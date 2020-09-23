@@ -6,3 +6,7 @@ export * from './AboutAction';
 export * from './ChangePassAction';
 export * from './CategoriesActions';
 export * from './ProvidersAction';
+export * from './NotificationsAction';
+export * from './ChangeNotifyStatuAction';
+export * from './SendComplaintAction';
+export * from './FavoritesAction';

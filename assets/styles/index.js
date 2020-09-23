@@ -1264,7 +1264,7 @@ const styles = ({
     },
     Active : {
         borderWidth           : 1,
-        borderColor           : COLORS.green,
+        borderColor           : COLORS.blue,
         zIndex:-1
     },
     noActive : {
