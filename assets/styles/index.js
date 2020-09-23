@@ -1275,6 +1275,10 @@ const styles = ({
         borderWidth           : 1,
         borderColor           : '#ddd',
     },
+    borderBlue : {
+        borderWidth           : 2,
+        borderColor           : COLORS.blue,
+    },
     borderBottomGray : {
         borderBottomWidth           : 1,
         borderColor           : '#ddd',

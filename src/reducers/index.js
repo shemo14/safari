@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+
 import lang from './LangReducer';
 import auth from './AuthReducer';
 import intro from './IntroReducer';
@@ -8,6 +9,10 @@ import categories from './CategoriesReducer';
 import providers from './ProvidersReducer';
 import notifications from './NotificationsReducer';
 import favorites from './FavoritesReducer';
+import banners 			from './BannersReducer';
+import providerDetails 	from './ProviderDetailsReducer';
+import search 	from './SearchReducer';
+
 
 
 export default combineReducers({
@@ -20,4 +25,7 @@ export default combineReducers({
 	providers,
 	notifications,
 	favorites,
+	banners,
+	providerDetails,
+	search,
 });

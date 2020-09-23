@@ -17,6 +17,7 @@ import i18n from "../../locale/i18n";
 import COLORS from "../consts/colors";
 import {useDispatch, useSelector} from "react-redux";
 import {getNotifications , deleteNoti} from '../actions';
+import {ScrollView} from "react-native-web";
 import * as Animatable from "react-native-animatable";
 
 const width	 		= Dimensions.get('window').width;
@@ -83,22 +84,24 @@ function Notifications({navigation, route}) {
     function Item({ title , date , body , id , type , service_id, index}) {
 
         return (
-            <TouchableOpacity key={'_' + index} style={{ borderRadius: 10,width: '100%',padding:15, height:140, justifyContent:'center',
-                marginBottom:10, overflow: 'hidden',backgroundColor: index % 2 === 0 ? '#F1F0FE' : '#FEF0DF'}} onPress={type=== 1 ?() => navigation.navigate('serviceDetails' , {service_id}) : null}>
-                <TouchableOpacity onPress={() => deleteNotify(id)} style={[styles.paddingVertical_5 , styles.paddingHorizontal_5, styles.Radius_50
-                    , {backgroundColor: index % 2 === 0 ? COLORS.blue : COLORS.orange
-                        , position:'absolute' , right:7 , bottom:10}]}>
-                    <Icon type={'AntDesign'} name={'delete'} style={{fontSize: 18 , color:'#fff'}}/>
-                </TouchableOpacity>
-                <View style={{borderLeftWidth:4 , borderLeftColor:index % 2 === 0 ? COLORS.blue : COLORS.orange , paddingLeft:15}}>
-                    <View style={[styles.directionRowSpace]}>
-                        <Text style={[ styles.textBold, styles.text_black, styles.textSize_14]}>{ title.substr(0,30) }</Text>
-                        <Text style={[ styles.textBold, styles.text_gray, styles.textSize_12]}>{ date }</Text>
+            <Animatable.View style={{width: '100%', marginBottom: 10}} animation="fadeInUp" easing="ease-out" delay={500}>
+                <TouchableOpacity style={{ borderRadius: 10,width: '100%',padding:15, height:140, justifyContent:'center',
+                    overflow: 'hidden',backgroundColor: index % 2 === 0 ? '#F1F0FE' : '#FEF0DF'}} onPress={type=== 1 ?() => navigation.navigate('serviceDetails' , {service_id}) : null}>
+                    <TouchableOpacity onPress={() => deleteNotify(id)} style={[styles.paddingVertical_5 , styles.paddingHorizontal_5, styles.Radius_50
+                        , {backgroundColor: index % 2 === 0 ? COLORS.blue : COLORS.orange
+                            , position:'absolute' , right:7 , bottom:10}]}>
+                        <Icon type={'AntDesign'} name={'delete'} style={{fontSize: 18 , color:'#fff'}}/>
+                    </TouchableOpacity>
+                    <View style={{borderLeftWidth:4 , borderLeftColor:index % 2 === 0 ? COLORS.blue : COLORS.orange , paddingLeft:15}}>
+                        <View style={[styles.directionRowSpace]}>
+                            <Text style={[ styles.textBold, styles.text_black, styles.textSize_14]}>{ title.substr(0,30) }</Text>
+                            <Text style={[ styles.textBold, styles.text_gray, styles.textSize_12]}>{ date }</Text>
+                        </View>
+                        <Text style={[ styles.textBold, styles.text_gray, styles.textSize_13, styles.alignStart]}>{ body }</Text>
+                        <Text style={[ styles.textBold, styles.text_orange , styles.textDecoration, styles.textSize_13 , styles.alignStart]}>{ i18n.t('seeOffer') }</Text>
                     </View>
-                    <Text style={[ styles.textBold, styles.text_gray, styles.textSize_13, styles.alignStart]}>{ body }</Text>
-                    <Text style={[ styles.textBold, styles.text_orange , styles.textDecoration, styles.textSize_13 , styles.alignStart]}>{ i18n.t('seeOffer') }</Text>
-                </View>
-            </TouchableOpacity>
+                </TouchableOpacity>
+            </Animatable.View>
         );
     }
 

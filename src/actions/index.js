@@ -10,3 +10,8 @@ export * from './NotificationsAction';
 export * from './ChangeNotifyStatuAction';
 export * from './SendComplaintAction';
 export * from './FavoritesAction';
+export * from './BannersAction';
+export * from './ProviderDetails';
+export * from './FavAction';
+export * from './RateAction';
+export * from './SearchAction';

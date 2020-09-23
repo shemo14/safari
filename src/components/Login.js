@@ -163,7 +163,7 @@ function Login({navigation}) {
 								</Item>
 							</View>
 
-							<View style={[styles.directionRowSpace , styles.Width_100 ]}>
+							<View style={[styles.directionRowSpace , styles.Width_100 , styles.marginBottom_15]}>
 								<TouchableOpacity onPress={() => navigation.push('forgetPass')}>
 									<Text style={[styles.textRegular , styles.text_gray , styles.textSize_13]}>{ i18n.t('forgetPassword') }</Text>
 								</TouchableOpacity>
