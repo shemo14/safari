@@ -6,3 +6,7 @@ export * from './AboutAction';
 export * from './ChangePassAction';
 export * from './CategoriesActions';
 export * from './ProvidersAction';
+export * from './BannersAction';
+export * from './ProviderDetails';
+export * from './FavAction';
+export * from './RateAction';
