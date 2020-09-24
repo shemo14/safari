@@ -46,7 +46,7 @@ function Login({navigation}) {
     };
 
     useEffect(() => {
-        getDeviceId()
+        setTimeout(() => getDeviceId(), 500);
     }, []);
 
     useEffect(() => {

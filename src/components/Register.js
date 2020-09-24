@@ -180,7 +180,7 @@ function Register({navigation}) {
 							</View>
 
 							<View>
-								<Text style={[styles.textRegular , styles.text_gray , styles.textSize_13]}>{ i18n.t('agreeTo') }</Text>
+								<Text style={[styles.textRegular , styles.text_gray , styles.textSize_13 , styles.marginBottom_15]}>{ i18n.t('agreeTo') }</Text>
 							</View>
 
 							<TouchableOpacity onPress={() => onRegister()} style={[styles.blueBtn , styles.Width_100]}>

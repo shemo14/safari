@@ -142,6 +142,7 @@ const ar = {
 	'rateServTitle'             : 'تقييم الخدمه',
 	'currentLocation'           : 'الموقع الحالي',
     'complaintTitle'            : 'عنوان الشكوي',
+    'noData'                    : 'لا يوجد بيانات',
 };
 
 export default ar;

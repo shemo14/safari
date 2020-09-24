@@ -66,18 +66,19 @@ function Notifications({navigation, route}) {
         }
     }
 
-    // function renderNoData() {
-    //     if (notifications && (notifications).length <= 0) {
-    //         return (
-    //             <View style={[styles.directionColumnCenter , styles.Width_100, styles.marginTop_25]}>
-    //                 <Image source={require('../../assets/images/note.png')} resizeMode={'contain'}
-    //                        style={{alignSelf: 'center', width: 200, height: 200}}/>
-    //             </View>
-    //         );
-    //     }
-    //
-    //     return null
-    // }
+    function renderNoData() {
+        if (notifications && (notifications).length <= 0) {
+            return (
+                <View style={[styles.directionColumnCenter , styles.Width_100, styles.heightFull ]}>
+                    <Image source={require('../../assets/images/no_data.png')} resizeMode={'contain'}
+                           style={{alignSelf: 'center', width: 120, height: 120}}/>
+                    <Text style={[ styles.textBold, styles.text_gray, styles.textSize_16]}>{ i18n.t('noData') }</Text>
+                </View>
+            );
+        }
+
+        return null
+    }
 
 
 
@@ -121,6 +122,8 @@ function Notifications({navigation, route}) {
 
                 <Content contentContainerStyle={[styles.bgFullWidth]} bounces={false} style={{height:'100%', marginTop: 10, overflow: 'hidden', borderTopRightRadius: 50, }}>
                     <View style={{ width: '100%', height:'100%', padding: 15, borderTopRightRadius: 50, backgroundColor: '#fff' }}>
+
+                        {renderNoData()}
                         <FlatList
                             data={notifications}
                             renderItem={({ item , index}) => <Item

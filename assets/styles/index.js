@@ -1114,6 +1114,9 @@ const styles = ({
     _alignText: {
         textAlign: I18nManager.isRTL ? 'right' : 'left'
     },
+    writingDir: {
+        writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr'
+    },
     label : {
         top:0,
         left: 15,

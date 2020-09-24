@@ -142,6 +142,7 @@ const en = {
 	'rateServTitle'             : 'Rate service',
 	'currentLocation'           : 'Current Location',
     'complaintTitle'            : 'Complaint title',
+    'noData'                    : 'No data',
 
 };
 
