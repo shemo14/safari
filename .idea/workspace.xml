@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="576527fe-727d-4d61-8581-aa2ff6ff066d" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/images/DYU02R_XcAAY0o_.png" beforeDir="false" />
@@ -28,13 +47,53 @@
       <change beforePath="$PROJECT_DIR$/assets/images/tent.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Favs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Favs.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/consts/images.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/consts/images.js" afterDir="false" />
+=======
+<<<<<<< HEAD
+      <change afterPath="$PROJECT_DIR$/src/actions/FavoritesAction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/reducers/FavoritesReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReactotronConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReactotronConfig.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locale/ar.js" beforeDir="false" afterPath="$PROJECT_DIR$/locale/ar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locale/en.js" beforeDir="false" afterPath="$PROJECT_DIR$/locale/en.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Complaint.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Complaint.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/EditProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EditProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Favs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Favs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Notifications.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Settings.js" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/src/actions/BannersAction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/actions/FavAction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/actions/ProviderDetails.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/actions/RateAction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Item.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/reducers/BannersReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/reducers/ProviderDetailsReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProviderDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProviderDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Providers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Providers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ServiceDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ServiceDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TripServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TripServices.js" afterDir="false" />
+>>>>>>> 6fb1ecffe7fe814107cc7ed4f2b4c00c9d7622d1
+      <change beforePath="$PROJECT_DIR$/src/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/index.js" afterDir="false" />
+>>>>>>> ae39cff9f540792289ef9f5bf447517ec0c30d10
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
+  <component name="ComposerSettings">
+    <execution />
+=======
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
@@ -179,10 +238,13 @@
       <dir>$PROJECT_DIR$/src</dir>
       <dir>$PROJECT_DIR$/src/components</dir>
     </dirStrings>
+>>>>>>> 6fb1ecffe7fe814107cc7ed4f2b4c00c9d7622d1
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
+=======
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -240,10 +302,20 @@
       </list>
     </option>
   </component>
+>>>>>>> 6fb1ecffe7fe814107cc7ed4f2b4c00c9d7622d1
   <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
+<<<<<<< HEAD
+  <component name="ProjectId" id="1hu6WgXFUXXmtmxIMjwcYlIN5LX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+=======
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -298,6 +370,7 @@
       </pane>
       <pane id="Scope" />
     </panes>
+>>>>>>> 6fb1ecffe7fe814107cc7ed4f2b4c00c9d7622d1
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -309,6 +382,7 @@
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -319,18 +393,7 @@
       <recent name="$PROJECT_DIR$/locale" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -346,6 +409,29 @@
       <workItem from="1600109240423" duration="85414000" />
       <workItem from="1600587793394" duration="7849000" />
       <workItem from="1600602360043" duration="8988000" />
+<<<<<<< HEAD
+      <workItem from="1600628257257" duration="38587000" />
+      <workItem from="1600848665381" duration="3286000" />
+      <workItem from="1600853802688" duration="201000" />
+      <workItem from="1600854478661" duration="2115000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+=======
       <workItem from="1600628257257" duration="40225000" />
       <workItem from="1600843260795" duration="17533000" />
     </task>
@@ -764,6 +850,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/node_modules/react-native/ReactAndroid/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -812,5 +899,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> 6fb1ecffe7fe814107cc7ed4f2b4c00c9d7622d1
+>>>>>>> ae39cff9f540792289ef9f5bf447517ec0c30d10
   </component>
 </project>

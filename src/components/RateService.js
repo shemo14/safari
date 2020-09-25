@@ -42,7 +42,7 @@ function RateService({navigation, route}) {
     }, [navigation ]);
     return (
         <Container>
-            <ImageBackground source={require('../../assets/images/menu_bg.png')} style={{ width, height: 200, alignSelf: 'center', flexGrow: 1 }} resizeMode={'cover'}>
+            <ImageBackground source={require('../../assets/images/bg.png')} style={{ width, height: 200, alignSelf: 'center', flexGrow: 1 }} resizeMode={'cover'}>
                 <Header style={{ backgroundColor: 'transparent',  borderBottomWidth: 0 }} noShadow>
                     <Right style={[styles.directionRowCenter , { flex: 0}]}>
                         <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 50, height: 50, justifyCenter: 'center', alignItems: 'center' }}>

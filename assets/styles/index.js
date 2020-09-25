@@ -1264,7 +1264,7 @@ const styles = ({
     },
     Active : {
         borderWidth           : 1,
-        borderColor           : COLORS.green,
+        borderColor           : COLORS.blue,
         zIndex:-1
     },
     noActive : {
@@ -1274,6 +1274,10 @@ const styles = ({
     borderGray : {
         borderWidth           : 1,
         borderColor           : '#ddd',
+    },
+    borderBlue : {
+        borderWidth           : 2,
+        borderColor           : COLORS.blue,
     },
     borderBottomGray : {
         borderBottomWidth           : 1,

@@ -52,7 +52,7 @@ export const logout = (lang , token) => {
 
         AsyncStorage.getItem('deviceID').then(device_id => {
             axios({
-                url         : CONST.url + 'logout',
+                url         : CONST.url + 'Logout',
                 method      : 'POST',
                 headers     : { Authorization: token },
                 data        : { lang ,device_id }
