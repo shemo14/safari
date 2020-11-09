@@ -25,20 +25,11 @@ function Register({navigation}) {
     const [password, setPassword] = useState('');
     const [confirmPass, setConfirmPass] = useState('');
 
-    const [usernameStatus, setUsernameStatus] = useState(0);
-    const [phoneStatus, setPhoneStatus] = useState(0);
-    const [passwordStatus, setPasswordStatus] = useState(0);
+    const [usernameStatus, setUsernameStatus] 		= useState(0);
+    const [phoneStatus, setPhoneStatus] 			= useState(0);
+    const [passwordStatus, setPasswordStatus] 		= useState(0);
     const [confirmPassStatus, setConfirmPassStatus] = useState(0);
-
-    const [spinner, setSpinner] = useState(false);
-
-	useEffect(() => {
-        const unsubscribe = navigation.addListener('focus', () => {
-            setSpinner(false)
-        });
-		setSpinner(false);
-        return unsubscribe;
-	}, [navigation, spinner]);
+    const [spinner, setSpinner] 					= useState(false);
 
     function activeInput(type) {
         if (type === 'username' || username !== '') setUsernameStatus(1);
@@ -97,7 +88,7 @@ function Register({navigation}) {
 		if (!err){
 			setSpinner(true);
 		    const data = { username, phone, password, lang };
-			dispatch(register(data, navigation));
+			dispatch(register(data, navigation)).then(() => setSpinner(false));
         }
 
     }
@@ -180,7 +171,7 @@ function Register({navigation}) {
 							</View>
 
 							<View>
-								<Text style={[styles.textRegular , styles.text_gray , styles.textSize_13]}>{ i18n.t('agreeTo') }</Text>
+								<Text style={[styles.textRegular , styles.text_gray , styles.textSize_13 , styles.marginBottom_15]}>{ i18n.t('agreeTo') }</Text>
 							</View>
 
 							<TouchableOpacity onPress={() => onRegister()} style={[styles.blueBtn , styles.Width_100]}>

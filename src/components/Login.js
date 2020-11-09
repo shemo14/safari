@@ -39,20 +39,14 @@ function Login({navigation}) {
         }
 
         const deviceId = await Notifications.getExpoPushTokenAsync();
-
         setDeviceId(deviceId);
 
         AsyncStorage.setItem('deviceID', deviceId);
     };
 
     useEffect(() => {
-        getDeviceId()
+        setTimeout(() => getDeviceId(), 2000);
     }, []);
-
-    useEffect(() => {
-		setTimeout(() => setSpinner(false), 500);
-    }, [auth]);
-
 
     function activeInput(type) {
         if (type === 'phone' || phone !== '') setPhoneStatus(1);
@@ -68,13 +62,17 @@ function Login({navigation}) {
         let isError = false;
         let msg = '';
 
-        if (phone.length <= 0) {
+        if (phone.length != 10) {
             isError = true;
             msg = i18n.t('namereq');
+        } else if (phone.length == 0) {
+            isError = true;
+            msg = i18n.t('phoneRequired');
         } else if (password.length < 6) {
             isError = true;
             msg = i18n.t('passreq');
         }
+
         if (msg !== '') {
             Toast.show({
                 text: msg,
@@ -111,7 +109,7 @@ function Login({navigation}) {
 
         if (!err){
             setSpinner(true);
-            dispatch(userLogin(phone, password, deviceId , lang , navigation));
+            dispatch(userLogin(phone, password, deviceId , lang , navigation)).then(() => setSpinner(false));
         }
     }
 

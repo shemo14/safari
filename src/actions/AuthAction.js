@@ -4,11 +4,9 @@ import { Toast } from 'native-base'
 import CONST from '../consts';
 
 export const userLogin = (phone, password, deviceId, lang , navigation) => {
-    return (dispatch) => {
+    return async (dispatch) => {
 
-        dispatch({type: 'login_user'});
-
-        axios.post(
+        await axios.post(
             CONST.url + 'login',
             {phone, password, lang, device_id: deviceId, type: 'user'})
             .then(
@@ -21,9 +19,9 @@ export const userLogin = (phone, password, deviceId, lang , navigation) => {
 };
 
 export const register = (data, navigation) => {
-    return (dispatch) => {
-        AsyncStorage.getItem('deviceID').then(device_id => {
-            axios({
+    return async (dispatch) => {
+        await AsyncStorage.getItem('deviceID').then( async (device_id) => {
+            await axios({
                 url: CONST.url + 'register',
                 method: 'POST',
                 data: {
@@ -55,7 +53,6 @@ export const register = (data, navigation) => {
                         textAlign   	: 'center'
                     }
                 });
-
             })
         })
 

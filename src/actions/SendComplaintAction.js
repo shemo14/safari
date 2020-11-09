@@ -4,8 +4,8 @@ import {Toast} from "native-base";
 
 
 export const SendComp = (lang , email , subject , message , token  , navigation) => {
-    return (dispatch) => {
-        axios({
+    return async (dispatch) => {
+        await axios({
             url         : CONST.url + 'sendComplaint',
             method      : 'POST',
             data        : { lang , email , subject , message },

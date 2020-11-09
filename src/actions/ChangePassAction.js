@@ -6,7 +6,7 @@ import {Toast} from "native-base";
 export const changePass = (lang , old_password , new_password , token , navigation) => {
     return (dispatch) => {
         axios({
-            url         : CONST.url + 'change_password',
+            url         : CONST.url + 'ChangePassword',
             method      : 'POST',
             headers     : { Authorization: token },
             data        : {lang ,old_password , new_password }
@@ -22,7 +22,7 @@ export const changePass = (lang , old_password , new_password , token , navigati
                 duration    : 3000,
                 textStyle   : {
                     color       : "white",
-                    fontFamily  : 'sukar',
+                    fontFamily  : 'ArbFONTS',
                     textAlign   : 'center'
                 }
             });

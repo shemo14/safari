@@ -31,9 +31,9 @@ function ActivationCode({navigation, route}) {
     const [spinner, setSpinner] = useState(false);
 
 
-    useEffect(() => {
-        alert('activation code : ' + code)
-    }, []);
+    // useEffect(() => {
+    //     alert('activation code : ' + code)
+    // }, []);
 
     function activeInput(type) {
         if (type === 'num1' || num1 !== '') setNum1Status(1);
@@ -59,7 +59,11 @@ function ActivationCode({navigation, route}) {
 		} else if (ref === 'input3'){
 			setNum3(value);
 			value !== '' ? input4.current._root.focus() : false;
-		} else setNum4(value);
+		}else if (ref === 'input4'){
+        	if(Number(value) <= 9 && Number(value) >= 0 ){
+				setNum4(value);
+			}
+		}
     }
 
     function onActiveAccount() {
@@ -138,6 +142,7 @@ function ActivationCode({navigation, route}) {
 										onBlur={() => unActiveInput('num4')}
 										onFocus={() => activeInput('num4')}
 										keyboardType={'number-pad'}
+										   value={num4}
 										ref={input4}
 									/>
 								</View>

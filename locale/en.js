@@ -143,7 +143,10 @@ const en = {
 	'currentLocation'           : 'Current Location',
     'complaintTitle'            : 'Complaint title',
     'searchOnMap'               : 'search On Map',
-
+    'noData'                    : 'No data',
+    'phoneRequired'             : 'Phone Is Required',
+    'settingsIntro'             : 'Change App Settings',
+    'subIntro'                  : 'choose your trip options',
 };
 
 export default en;

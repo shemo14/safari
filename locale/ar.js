@@ -143,6 +143,10 @@ const ar = {
 	'currentLocation'           : 'الموقع الحالي',
     'complaintTitle'            : 'عنوان الشكوي',
     'searchOnMap'               : 'بحث في الخريطة',
+    'noData'                    : 'لا يوجد بيانات',
+    'phoneRequired'             : 'رقم الهاتف مطلوب',
+    'settingsIntro'             : 'لتغير اعدادات التطبيق الخاصه بك',
+    'subIntro'                  : 'اختر الخصائص التي تريدها في رحلتك',
 };
 
 export default ar;

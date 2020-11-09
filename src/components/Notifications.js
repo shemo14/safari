@@ -25,20 +25,19 @@ const height 		= Dimensions.get('window').height;
 const isIOS  		= Platform.OS === 'ios';
 const IS_IPHONE_X 	= (height === 812 || height === 896) && Platform.OS === 'ios';
 
-
 function Notifications({navigation, route}) {
-    const lang = useSelector(state => state.lang.lang);
-    const token = useSelector(state => state.auth.user ? state.auth.user.data.token : null);
-    const notifications = useSelector(state => state.notifications.notifications);
-    const notificationsLoader = useSelector(state => state.notifications.loader);
+    const lang                              = useSelector(state => state.lang.lang);
+    const token                             = useSelector(state => state.auth.user ? state.auth.user.data.token : null);
+    const notifications                     = useSelector(state => state.notifications.notifications);
+    const notificationsLoader               = useSelector(state => state.notifications.loader);
     const [screenLoader , setScreenLoader ] = useState(true);
-
-    const dispatch = useDispatch();
+    const dispatch                          = useDispatch();
 
     function fetchData(){
         setScreenLoader(true)
         dispatch(getNotifications(lang, token))
     }
+
     function deleteNotify(id){
         dispatch(deleteNoti(lang , id, token))
     }
@@ -66,25 +65,26 @@ function Notifications({navigation, route}) {
         }
     }
 
-    // function renderNoData() {
-    //     if (notifications && (notifications).length <= 0) {
-    //         return (
-    //             <View style={[styles.directionColumnCenter , styles.Width_100, styles.marginTop_25]}>
-    //                 <Image source={require('../../assets/images/note.png')} resizeMode={'contain'}
-    //                        style={{alignSelf: 'center', width: 200, height: 200}}/>
-    //             </View>
-    //         );
-    //     }
-    //
-    //     return null
-    // }
+    function renderNoData() {
+        if (notifications && (notifications).length <= 0) {
+            return (
+                <View style={[styles.directionColumnCenter , styles.Width_100, styles.heightFull ]}>
+                    <Image source={require('../../assets/images/no_data.png')} resizeMode={'contain'}
+                           style={{alignSelf: 'center', width: 120, height: 120}}/>
+                    <Text style={[ styles.textBold, styles.text_gray, styles.textSize_16]}>{ i18n.t('noData') }</Text>
+                </View>
+            );
+        }
+
+        return null
+    }
 
 
 
     function Item({ title , date , body , id , type , service_id, index}) {
 
         return (
-            <Animatable.View style={{width: '100%', marginBottom: 10}} animation="fadeInUp" easing="ease-out" delay={500}>
+            <View style={{width: '100%', marginBottom: 10}} animation="fadeInUp" easing="ease-out" delay={500}>
                 <TouchableOpacity style={{ borderRadius: 10,width: '100%',padding:15, height:140, justifyContent:'center',
                     overflow: 'hidden',backgroundColor: index % 2 === 0 ? '#F1F0FE' : '#FEF0DF'}} >
                     <TouchableOpacity onPress={() => deleteNotify(id)} style={[styles.paddingVertical_5 , styles.paddingHorizontal_5, styles.Radius_50
@@ -101,7 +101,7 @@ function Notifications({navigation, route}) {
                         <Text style={[ styles.textBold, styles.text_orange , styles.textDecoration, styles.textSize_13 , styles.alignStart]}>{ i18n.t('seeOffer') }</Text>
                     </View>
                 </TouchableOpacity>
-            </Animatable.View>
+            </View>
         );
     }
 
@@ -121,6 +121,8 @@ function Notifications({navigation, route}) {
 
                 <Content contentContainerStyle={[styles.bgFullWidth]} bounces={false} style={{height:'100%', marginTop: 10, overflow: 'hidden', borderTopRightRadius: 50, }}>
                     <View style={{ width: '100%', height:'100%', padding: 15, borderTopRightRadius: 50, backgroundColor: '#fff' }}>
+
+                        {renderNoData()}
                         <FlatList
                             data={notifications}
                             renderItem={({ item , index}) => <Item

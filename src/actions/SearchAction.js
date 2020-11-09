@@ -8,7 +8,7 @@ export const getSearch = (lang , keyword ,token) => {
             url         : CONST.url + 'search',
             method      : 'POST',
             data        : {lang , keyword},
-            headers     : {Authorization: token}
+            headers     : token ? {Authorization: token} : null
         }).then(response => {
             dispatch({type: 'getSearch', payload: response.data});
         });

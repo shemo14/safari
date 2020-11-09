@@ -20,9 +20,9 @@ function ResetPass({navigation, route}) {
     const [passwordStatus, setPasswordStatus] = useState(0);
     const [confirmPassStatus, setConfirmPassStatus] = useState(0);
 
-    useEffect(() => {
-		alert('activation code : ' + activeCode)
-    }, [])
+    // useEffect(() => {
+	// 	alert('activation code : ' + activeCode)
+    // }, [])
 
     function activeInput(type) {
         if (type === 'code' || code !== '') setCodeStatus(1);
