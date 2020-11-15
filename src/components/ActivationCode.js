@@ -5,11 +5,11 @@ import styles from '../../assets/styles'
 import i18n from "../../locale/i18n";
 import COLORS from "../consts/colors";
 import { useDispatch, useSelector } from 'react-redux'
-// import {activeAccount} from "../actions";
+import {activeAccount} from "../actions";
 
 function ActivationCode({navigation, route}) {
 
-	// const { code, userId } = route.params;
+	const { code, userId } = route.params;
 	const lang = useSelector(state => state.lang.lang);
 	const dispatch = useDispatch();
 
@@ -31,9 +31,9 @@ function ActivationCode({navigation, route}) {
     const [spinner, setSpinner] = useState(false);
 
 
-    useEffect(() => {
-        // alert('activation code : ' + code)
-    }, []);
+    // useEffect(() => {
+    //     alert('activation code : ' + code)
+    // }, []);
 
     function activeInput(type) {
         if (type === 'num1' || num1 !== '') setNum1Status(1);
@@ -59,25 +59,29 @@ function ActivationCode({navigation, route}) {
 		} else if (ref === 'input3'){
 			setNum3(value);
 			value !== '' ? input4.current._root.focus() : false;
-		} else setNum4(value);
+		}else if (ref === 'input4'){
+        	if(Number(value) <= 9 && Number(value) >= 0 ){
+				setNum4(value);
+			}
+		}
     }
 
     function onActiveAccount() {
         const activeCode = num1 + num2 + num3 + num4;
 
-        // if (activeCode == code) dispatch(activeAccount(userId, lang));
-        // else {
-		// 	Toast.show({
-		// 		text        	: i18n.t('codeNotMatch'),
-		// 		type			: "danger",
-		// 		duration    	: 3000,
-		// 		textStyle   	: {
-		// 			color       	: "white",
-		// 			fontFamily  	: 'ArbFONTS',
-		// 			textAlign   	: 'center'
-		// 		}
-		// 	});
-        // }
+        if (activeCode == code) dispatch(activeAccount(userId, lang));
+        else {
+			Toast.show({
+				text        	: i18n.t('codeNotMatch'),
+				type			: "danger",
+				duration    	: 3000,
+				textStyle   	: {
+					color       	: "white",
+					fontFamily  	: 'ArbFONTS',
+					textAlign   	: 'center'
+				}
+			});
+        }
 
 	}
 
@@ -138,6 +142,7 @@ function ActivationCode({navigation, route}) {
 										onBlur={() => unActiveInput('num4')}
 										onFocus={() => activeInput('num4')}
 										keyboardType={'number-pad'}
+										   value={num4}
 										ref={input4}
 									/>
 								</View>

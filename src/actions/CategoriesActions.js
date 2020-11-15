@@ -1,0 +1,1 @@
+import axios from "axios";import CONST from "../consts";export const getCategories = (lang, lat, lng) => {	return (dispatch) => {		axios({			url         : CONST.url + 'categories',			method      : 'POST',			data        : { lang, lat, lng }		}).then(response => {			dispatch({type: 'getCategories', payload: response.data});		});	}};

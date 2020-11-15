@@ -5,11 +5,11 @@ import styles from '../../assets/styles'
 import i18n from "../../locale/i18n";
 import COLORS from "../consts/colors";
 import {useDispatch, useSelector} from "react-redux";
-// import {resetPassword} from "../actions";
+import {resetPassword} from "../actions";
 
 function ResetPass({navigation, route}) {
 
-	// const { activeCode, id } = route.params;
+	const { activeCode, id } = route.params;
 	const lang      = useSelector(state => state.lang.lang);
 	const dispatch  = useDispatch();
 

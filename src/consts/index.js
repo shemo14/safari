@@ -1,3 +1,4 @@
 export default {
-    url: 'https://masarah.aait-sa.com/api/',
+    url: 'https://safari.aait-sa.com/api/',
+    defaultAvatar: 'https://safari.aait-sa.com/public/images/users/default.png',
 };

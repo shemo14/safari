@@ -427,7 +427,13 @@ const styles = ({
         elevation               : 3,
     },
 
-    // Styles Flex Box
+	footerIcon : {
+		width               : 20,
+		height              : 20,
+		resizeMode          :  "contain"
+	},
+
+	// Styles Flex Box
     keyboardAvoid: {
         width:'100%',
         height: null,
@@ -967,7 +973,7 @@ const styles = ({
         height: 90,
         zIndex: 1,
         borderRadius: 10,
-        marginTop: IS_IPHONE_X ? 120 : 70,
+        marginTop: IS_IPHONE_X ? 120 : Platform.OS === 'ios' ? 85 : 65,
         alignSelf: 'center',
         shadowColor: "#ffffff",
 		shadowOffset: {
@@ -1107,6 +1113,9 @@ const styles = ({
     },
     _alignText: {
         textAlign: I18nManager.isRTL ? 'right' : 'left'
+    },
+    writingDir: {
+        writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr'
     },
     label : {
         top:0,
@@ -1250,7 +1259,7 @@ const styles = ({
         color               : COLORS.blue,
         paddingRight        : 20,
         paddingLeft         : 20,
-        textAlign           : 'right',
+        textAlign           : I18nManager.isRTL ? 'right' : 'left',
         fontFamily          : 'ArbFONTS',
         fontSize            : 15,
         top                 : 0,
@@ -1258,7 +1267,7 @@ const styles = ({
     },
     Active : {
         borderWidth           : 1,
-        borderColor           : COLORS.green,
+        borderColor           : COLORS.blue,
         zIndex:-1
     },
     noActive : {
@@ -1268,6 +1277,10 @@ const styles = ({
     borderGray : {
         borderWidth           : 1,
         borderColor           : '#ddd',
+    },
+    borderBlue : {
+        borderWidth           : 2,
+        borderColor           : COLORS.blue,
     },
     borderBottomGray : {
         borderBottomWidth           : 1,

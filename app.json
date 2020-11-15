@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "safary",
+    "name": "سفاري",
     "slug": "safary",
-    "version": "1.0.0",
+    "version": "1.0.8",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -17,7 +17,26 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.safari.client",
+      "userInterfaceStyle": "light",
+      "infoPlist": {
+        "NSCameraUsageDescription": "App need this permission to update profile photo.",
+        "NSPhotoLibraryAddUsageDescription": "App need this permission to update profile photo.",
+        "NSLocationWhenInUseUsageDescription": "App need this permission to return the nearest providers.",
+        "NSPhotoLibraryUsageDescription": "App need this permission to update profile photo."
+      }
+    },
+    "android": {
+      "package": "com.safari.client",
+      "userInterfaceStyle": "light",
+      "googleServicesFile": "./google-services.json",
+      "versionCode": 8,
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBQu-aDY--uY14s4U3ok-XwwqhsnhLFe5Q"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
