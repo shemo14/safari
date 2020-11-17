@@ -167,7 +167,8 @@ const ar = {
     'editService'               : 'تعديل الخدمة',
     'edit'                      : 'تعديل',
     'setLocation'               : 'حدد الموقع',
-
+    'photos'                    : 'الصور',
+    'camera'                    : 'الكاميرا',
 };
 
 export default ar;

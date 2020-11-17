@@ -384,8 +384,8 @@ const styles = ({
     bg_green : {
         backgroundColor     : COLORS.green
     },
-    bg_mstarda : {
-        backgroundColor     : COLORS.mstarda
+    bg_sky : {
+        backgroundColor     : COLORS.sky
     },
 
     bg_pink : {

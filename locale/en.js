@@ -167,6 +167,8 @@ const en = {
     'editService'               : 'Edit Service',
     'edit'                      : 'Edit',
     'setLocation'               : 'Select location',
+    'photos'                    : 'Photos',
+    'camera'                    : 'Camera',
 };
 
 export default en;

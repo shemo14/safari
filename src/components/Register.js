@@ -7,7 +7,7 @@ import {
 	ImageBackground,
 	KeyboardAvoidingView,
 	I18nManager,
-	ActivityIndicator
+	ActivityIndicator, Platform
 } from "react-native";
 import {Container, Content, Form, Input, Item, Label, Toast } from 'native-base'
 import styles from '../../assets/styles'
@@ -16,6 +16,8 @@ import COLORS from "../consts/colors";
 import RNPickerSelect from 'react-native-picker-select';
 import {useSelector, useDispatch} from 'react-redux';
 import {register} from '../actions';
+
+const IS_IOS =  Platform.OS === 'ios';
 
 function Register({navigation}) {
 	const lang      = useSelector(state => state.lang.lang);
@@ -168,7 +170,7 @@ function Register({navigation}) {
                                         { label: i18n.t('provider'), value: 'provider' },
                                     ]}
                                     Icon={() => {
-                                        return <Image source={require('../../assets/images/gray_arrow.png')} style={[styles.icon15 , {top:20}]} resizeMode={'contain'} />
+                                        return <Image source={require('../../assets/images/gray_arrow.png')} style={[styles.icon15 , {top:IS_IOS ? 5 : 20}]} resizeMode={'contain'} />
                                     }}
                                 />
                             </View>
