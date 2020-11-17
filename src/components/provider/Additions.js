@@ -6,6 +6,7 @@ import i18n from "../../../locale/i18n";
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import COLORS from "../../consts/colors";
+import Modal from "react-native-modal";
 
 const width		 	= Dimensions.get('window').width;
 const height	 	= Dimensions.get('window').height;
@@ -20,6 +21,7 @@ function Additions({navigation, route}) {
     const [additionNameEnStatus, setAdditionNameEnStatus]   = useState(0);
     const [price, setPrice]                                 = useState('');
     const [priceStatus, setPriceStatus]                     = useState(0);
+    const [showModal, setShowModal] 		= useState(false);
 
     function activeInput(type) {
         if (type === 'additionName' || additionName !== '') setAdditionNameStatus(1);
@@ -38,6 +40,22 @@ function Additions({navigation, route}) {
         await Permissions.askAsync(Permissions.CAMERA_ROLL);
 
     };
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+
+            if (route.params?.photo) {
+                setUserImage(route.params.photo.uri);
+                setBase64(route.params.photo.base64);
+            }
+        });
+
+        return unsubscribe;
+    }, [navigation , route.params?.photo])
+
+    function toggleModal() {
+        setShowModal(!showModal)
+    }
 
     const _pickImage = async () => {
 
@@ -62,7 +80,7 @@ function Additions({navigation, route}) {
             <ImageBackground source={require('../../../assets/images/bg.png')} style={{ width, height:height*70/100, alignSelf: 'center', flexGrow: 1 }} resizeMode={'cover'}>
                 <Header style={{ backgroundColor: 'transparent', marginTop: 10, borderBottomWidth: 0 }} noShadow>
                     <Right style={[styles.directionRowCenter , { flex: 0}]}>
-                        <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 50, height: 50, justifyCenter: 'center', alignItems: 'center' }}>
+                        <TouchableOpacity onPress={() => routeName === 'addService' ? navigation.navigate(routeName,{pathName :'addition'}) : navigation.goBack()} style={{ width: 50, height: 50, justifyCenter: 'center', alignItems: 'center' }}>
                             <Image source={require('../../../assets/images/white_back.png')} style={[ styles.transform , { width: 23, height: 23, marginTop: 10 }]} resizeMode={'contain'}/>
                         </TouchableOpacity>
                         <Text style={{ textAlign:  I18nManager.isRTL ? 'right' : 'left', color: '#fff', fontSize: 16, fontFamily: 'ArbFONTSBold', marginBottom: 5 }}>{ i18n.t('adds') }</Text>
@@ -78,7 +96,7 @@ function Additions({navigation, route}) {
                                 <View style={[styles.tripImage]}>
                                     <View style={[ styles.bg_White, styles.Width_100, styles.position_A, styles.height_120 , styles.borderGray, { zIndex: -1 ,
                                         borderRadius: 10} ]} />
-                                    <TouchableOpacity onPress={_pickImage}  style={[styles.Width_100 , styles.heightFull , styles.flexCenter]}>
+                                    <TouchableOpacity onPress={toggleModal}  style={[styles.Width_100 , styles.heightFull , styles.flexCenter]}>
                                         {
                                             image != null?
                                                 <Image source= {{uri:image}} style={[styles.Width_100 , styles.heightFull , styles.SelfCenter ]} resizeMode={'cover'} />
@@ -129,7 +147,7 @@ function Additions({navigation, route}) {
 
                                 {
                                     additionName && additionNameEn && price && userImage ?
-                                        <TouchableOpacity onPress={() => navigation.navigate(routeName ,{addition:{addition_ar:additionName , addition_en:additionNameEn , price , imageUrl:userImage , image:base64}})} style={[styles.blueBtn , styles.Width_100 , styles.marginBottom_25]}>
+                                        <TouchableOpacity onPress={() => navigation.navigate(routeName ,{pathName :'addition' , addition:{addition_ar:additionName , addition_en:additionNameEn , price , imageUrl:userImage , image:base64}})} style={[styles.blueBtn , styles.Width_100 , styles.marginBottom_25]}>
                                             <Text style={[styles.textRegular , styles.text_White , styles.textSize_16]}>{ i18n.t('confirm') }</Text>
                                         </TouchableOpacity>
                                     :
@@ -141,7 +159,33 @@ function Additions({navigation, route}) {
                             </Form>
                         </KeyboardAvoidingView>
                     </View>
+                    <Modal
+                        onBackdropPress     = {toggleModal}
+                        onBackButtonPress   = {toggleModal}
+                        isVisible           = {showModal}
+                        style               = {styles.bgModel}
+                        avoidKeyboard  		= {true}
+                    >
+                        <View style={[{borderTopLeftRadius:30,
+                            borderTopRightRadius:30},styles.bg_White, styles.overHidden, styles.Width_100, styles.paddingVertical_10 , styles.paddingHorizontal_10]}>
+                            <View style={[styles.overHidden, styles.Width_100 , styles.paddingHorizontal_25]}>
 
+                                <TouchableOpacity onPress={() => {_pickImage() ; setShowModal(false)}} style={[styles.marginBottom_10]}>
+                                    <Text style={[styles.text_black , styles.textBold , styles.textSize_16]}>{ i18n.t('photos') }</Text>
+                                </TouchableOpacity>
+
+                                <View style={[styles.borderGray , styles.marginBottom_5]}/>
+
+                                <TouchableOpacity onPress={() => {navigation.navigate('cameraCapture' , {pathName:'additions'}) ; setShowModal(false)}} style={[styles.marginBottom_15]}>
+                                    <Text style={[styles.text_black , styles.textBold , styles.textSize_16]}>{ i18n.t('camera') }</Text>
+                                </TouchableOpacity>
+
+
+
+                            </View>
+                        </View>
+
+                    </Modal>
                 </Content>
             </ImageBackground>
         </Container>

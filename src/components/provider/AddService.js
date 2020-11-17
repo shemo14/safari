@@ -9,6 +9,7 @@ import COLORS from "../../consts/colors";
 import { useDispatch, useSelector } from 'react-redux'
 import {StoreService} from "../../actions";
 import * as Animatable from "react-native-animatable";
+import Modal from "react-native-modal";
 
 const width		 	= Dimensions.get('window').width;
 const height	 	= Dimensions.get('window').height;
@@ -24,7 +25,7 @@ function AddService({navigation, route}) {
     const sub_category_id           = route.params.subCategories;
     const [photos, setPhotos]       = useState([]);
     const [additions, setAdditions] = useState([]);
-
+    const [showModal, setShowModal] 		= useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     const lang  = useSelector(state => state.lang.lang);
@@ -85,6 +86,27 @@ function AddService({navigation, route}) {
         return unsubscribe;
     }, [navigation, addition])
 
+    console.log('base64.length' , base64.length)
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+
+            if (route.params?.photo && route.params.pathName === 'cam') {
+                let tempPhotos = photos;
+                tempPhotos.push({ id: tempPhotos.length, image: route.params.photo.uri});
+                base64.push(route.params.photo.base64);
+                setPhotos([...tempPhotos]);
+            }
+        });
+
+        return unsubscribe;
+    }, [navigation, route.params]);
+
+    function toggleModal() {
+        setShowModal(!showModal)
+    }
+
+
     function confirmDelete (i) {
         photos.splice(i, 1);
         setPhotos([...photos]);
@@ -101,7 +123,7 @@ function AddService({navigation, route}) {
                     , styles.borderGray , styles.marginHorizontal_10,{borderStyle: 'dashed', borderRadius: 1}]}>
                     {
                         photos[i]?
-                            <TouchableOpacity onPress={() => confirmDelete(i)} style={[styles.bg_blue , styles.Radius_50 , {position:'absolute' , right:5 , top:5 , zIndex:1 , padding:5}]}>
+                            <TouchableOpacity onPress={() => confirmDelete(i)} style={[styles.bg_sky , styles.Radius_50 , {position:'absolute' , right:5 , top:5 , zIndex:1 , padding:5}]}>
                                 <Icon type={'AntDesign'} name={'delete'} style={{fontSize: 18 , color:'#fff'}}/>
                             </TouchableOpacity>
                             :
@@ -171,7 +193,7 @@ function AddService({navigation, route}) {
                                 <View style={[styles.tripImage]}>
                                     <View style={[ styles.bg_White, styles.Width_100, styles.position_A, styles.height_120 , styles.borderGray, { zIndex: 0 ,
                                         borderRadius: 10} ]} />
-                                    <TouchableOpacity onPress={_pickImage}  style={[styles.Width_100 , styles.heightFull , styles.flexCenter]}>
+                                    <TouchableOpacity onPress={toggleModal}  style={[styles.Width_100 , styles.heightFull , styles.flexCenter]}>
                                         <Icon type={'AntDesign'} name={'plus'} style={{ color: COLORS.gray, fontSize: 24 }} />
                                     </TouchableOpacity>
 
@@ -304,7 +326,33 @@ function AddService({navigation, route}) {
 
                         </Form>
                     </View>
+                    <Modal
+                        onBackdropPress     = {toggleModal}
+                        onBackButtonPress   = {toggleModal}
+                        isVisible           = {showModal}
+                        style               = {styles.bgModel}
+                        avoidKeyboard  		= {true}
+                    >
+                        <View style={[{borderTopLeftRadius:30,
+                            borderTopRightRadius:30},styles.bg_White, styles.overHidden, styles.Width_100, styles.paddingVertical_10 , styles.paddingHorizontal_10]}>
+                            <View style={[styles.overHidden, styles.Width_100 , styles.paddingHorizontal_25]}>
 
+                                <TouchableOpacity onPress={() => {_pickImage() ; setShowModal(false)}} style={[styles.marginBottom_10]}>
+                                    <Text style={[styles.text_black , styles.textBold , styles.textSize_16]}>{ i18n.t('photos') }</Text>
+                                </TouchableOpacity>
+
+                                <View style={[styles.borderGray , styles.marginBottom_5]}/>
+
+                                <TouchableOpacity onPress={() => {navigation.navigate('cameraCapture' , {pathName:'addService'}) ; setShowModal(false)}} style={[styles.marginBottom_15]}>
+                                    <Text style={[styles.text_black , styles.textBold , styles.textSize_16]}>{ i18n.t('camera') }</Text>
+                                </TouchableOpacity>
+
+
+
+                            </View>
+                        </View>
+
+                    </Modal>
                 </Content>
             </ImageBackground>
         </Container>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect ,useRef } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect ,useRef  } from 'react';
+import { Text, View, TouchableOpacity , BackHandler} from 'react-native';
 import { Camera } from 'expo-camera';
 import styles from '../../assets/styles'
 import {Icon} from 'native-base'
@@ -18,6 +18,21 @@ export default function CameraCapture({navigation , route}) {
         })();
     }, []);
 
+
+    useEffect(() => {
+        const backAction = () => {
+            navigation.navigate(pathName, {pathName: ''});
+            return true;
+        };
+
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+        );
+
+        return () => backHandler.remove();
+    }, []);
+
     if (hasPermission === null) {
         return <View />;
     }
@@ -31,8 +46,7 @@ export default function CameraCapture({navigation , route}) {
 
     function onPictureSaved(photo){
         // console.log(photo);
-        if(pathName === 'editProfile')
-            navigation.navigate('editProfile', {photo});
+        navigation.navigate(pathName, {photo, pathName: 'cam'});
     }
 
     return (

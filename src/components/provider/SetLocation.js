@@ -37,7 +37,7 @@ function SetLocation({navigation, route}) {
         }
 
         const coords = { latitude, longitude, address: (search).substr(0, 30) };
-        navigation.navigate(routeName, { coords })
+        navigation.navigate(routeName, { coords , pathName:'location'})
     }
 
 
@@ -170,7 +170,7 @@ function SetLocation({navigation, route}) {
             <ImageBackground source={require('../../../assets/images/menu_bg.png')} style={{ width, height, alignSelf: 'center', flexGrow: 1 }} resizeMode={'cover'}>
                 <Header style={{ backgroundColor: 'transparent', marginTop: 10, borderBottomWidth: 0 }} noShadow>
                     <Right style={{ flex: 0, marginLeft: 10 }}>
-                        <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 50, height: 50, justifyCenter: 'center', alignItems: 'center' }}>
+                        <TouchableOpacity onPress={() => routeName === 'addService' ? navigation.navigate(routeName,{pathName :'addition'}) : navigation.goBack()} style={{ width: 50, height: 50, justifyCenter: 'center', alignItems: 'center' }}>
                             <Image source={require('../../../assets/images/white_back.png')} style={{ width: 27, height: 27, marginTop: 10 }} resizeMode={'contain'}/>
                         </TouchableOpacity>
                     </Right>
