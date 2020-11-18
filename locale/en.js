@@ -169,6 +169,22 @@ const en = {
     'setLocation'               : 'Select location',
     'photos'                    : 'Photos',
     'camera'                    : 'Camera',
+    'editAdds'                  : 'Edit addition',
+    'subscriptions'             : 'Subscriptions',
+    'allSubInfo'                : 'All subscriptions information',
+    'subscription'              : 'Subscription',
+    'payPackage'                : 'Pay the selected package',
+    'pay'                       : 'Pay',
+    'visa'                      : 'Visa',
+    'sdad'                      : 'Sadad',
+    'stc'                       : 'STC',
+    'bankTransfer'              : 'Bank transfer',
+    'bankAccounts'              : 'Bank accounts',
+    'amountPayed'               : 'Amount to be paid',
+    'bank'                      : "Bank name",
+    'accName'                   : 'Account number',
+    'bankTransferInfo'          : 'Bank transfer data',
+    'transImage'                : 'Transaction imageُ',
 };
 
 export default en;

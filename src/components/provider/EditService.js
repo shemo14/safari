@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {DeleteImg, UpdateService} from "../../actions";
 import * as Animatable from "react-native-animatable";
 import axios from "axios";
+import Modal from "react-native-modal";
 
 const width		 	= Dimensions.get('window').width;
 const height	 	= Dimensions.get('window').height;
@@ -26,22 +27,23 @@ function EditService({navigation, route}) {
     const [photos, setPhotos]           = useState(service.images);
     const [additions, setAdditions]     = useState([]);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [showModal, setShowModal] 		= useState(false);
 
     const lang  = useSelector(state => state.lang.lang);
     const token = useSelector(state => state.auth.user ? state.auth.user.data.token : null);
 
     const [servName, setServName]                   = useState(service.name_ar);
-    const [servNameStatus, setServNameStatus]       = useState(0);
+    const [servNameStatus, setServNameStatus]       = useState(1);
     const [servNameEn, setServNameEn]               = useState(service.name_en);
-    const [servNameEnStatus, setServNameEnStatus]   = useState(0);
+    const [servNameEnStatus, setServNameEnStatus]   = useState(1);
     const [whatsNum, setWhatsNum]                   = useState(service.whatsapp);
-    const [whatsNumStatus, setWhatsNumStatus]       = useState(0);
+    const [whatsNumStatus, setWhatsNumStatus]       = useState(1);
     const [price, setPrice]                         = useState(service.price2);
-    const [priceStatus, setPriceStatus]             = useState(0);
+    const [priceStatus, setPriceStatus]             = useState(1);
     const [desc, setDesc]                           = useState(service.description_ar);
-    const [descStatus, setDescStatus]               = useState(0);
+    const [descStatus, setDescStatus]               = useState(1);
     const [descEn, setDescEn]                       = useState(service.description_en);
-    const [descEnStatus, setDescEnStatus]           = useState(0);
+    const [descEnStatus, setDescEnStatus]           = useState(1);
     const [address, setAddress]                     = useState(i18n.t('setLocation'));
     const location                                  = coords ? { latitude: coords.latitude, longitude: coords.longitude } : { latitude: service.latitude, longitude: service.longitude };
 
@@ -111,6 +113,25 @@ function EditService({navigation, route}) {
         return unsubscribe;
     }, [navigation, addition])
 
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+
+            if (route.params?.photo && route.params.pathName === 'cam') {
+                let tempPhotos = photos;
+                tempPhotos.push({ id: tempPhotos.length, image: route.params.photo.uri , new: true});
+                base64.push(route.params.photo.base64);
+                setPhotos([...tempPhotos]);
+            }
+        });
+
+        return unsubscribe;
+    }, [navigation, route.params]);
+
+    function toggleModal() {
+        setShowModal(!showModal)
+    }
+
+
 
     function confirmDelete (i) {
         if (photos[i].new)
@@ -132,7 +153,7 @@ function EditService({navigation, route}) {
                     , styles.borderGray , styles.marginHorizontal_10,{borderStyle: 'dashed', borderRadius: 5, overflow: 'hidden'}]}>
                     {
                         photos[i]?
-                            <TouchableOpacity onPress={() => confirmDelete(i)} style={[styles.bg_blue , styles.Radius_50 , {position:'absolute' , right:5 , top:5 , zIndex:1 , padding:5}]}>
+                            <TouchableOpacity onPress={() => confirmDelete(i)} style={[styles.bg_sky , styles.Radius_50 , {position:'absolute' , right:5 , top:5 , zIndex:1 , padding:5}]}>
                                 <Icon type={'AntDesign'} name={'delete'} style={{fontSize: 18 , color:'#fff'}}/>
                             </TouchableOpacity>
                             :
@@ -166,7 +187,7 @@ function EditService({navigation, route}) {
                 tempPhotos[i] = { id: i, image: result.uri, new: true};
                 base64[i]=result.base64;
             }else{
-                tempPhotos.push({ id: i, image: result.uri});
+                tempPhotos.push({ id: photos.length, image: result.uri, new: true});
                 base64.push(result.base64);
             }
 
@@ -201,7 +222,7 @@ function EditService({navigation, route}) {
                                 <View style={[styles.tripImage]}>
                                     <View style={[ styles.bg_White, styles.Width_100, styles.position_A, styles.height_120 , styles.borderGray, { zIndex: 0 ,
                                         borderRadius: 10} ]} />
-                                    <TouchableOpacity onPress={_pickImage}  style={[styles.Width_100 , styles.heightFull , styles.flexCenter]}>
+                                    <TouchableOpacity onPress={toggleModal}  style={[styles.Width_100 , styles.heightFull , styles.flexCenter]}>
                                         <Icon type={'AntDesign'} name={'plus'} style={{ color: COLORS.gray, fontSize: 24 }} />
                                     </TouchableOpacity>
                                 </View>
@@ -338,7 +359,33 @@ function EditService({navigation, route}) {
 
                         </Form>
                     </View>
+                    <Modal
+                        onBackdropPress     = {toggleModal}
+                        onBackButtonPress   = {toggleModal}
+                        isVisible           = {showModal}
+                        style               = {styles.bgModel}
+                        avoidKeyboard  		= {true}
+                    >
+                        <View style={[{borderTopLeftRadius:30,
+                            borderTopRightRadius:30},styles.bg_White, styles.overHidden, styles.Width_100, styles.paddingVertical_10 , styles.paddingHorizontal_10]}>
+                            <View style={[styles.overHidden, styles.Width_100 , styles.paddingHorizontal_25]}>
 
+                                <TouchableOpacity onPress={() => {_pickImage() ; setShowModal(false)}} style={[styles.marginBottom_10]}>
+                                    <Text style={[styles.text_black , styles.textBold , styles.textSize_16]}>{ i18n.t('photos') }</Text>
+                                </TouchableOpacity>
+
+                                <View style={[styles.borderGray , styles.marginBottom_5]}/>
+
+                                <TouchableOpacity onPress={() => {navigation.navigate('cameraCapture' , {pathName:'editService'}) ; setShowModal(false)}} style={[styles.marginBottom_15]}>
+                                    <Text style={[styles.text_black , styles.textBold , styles.textSize_16]}>{ i18n.t('camera') }</Text>
+                                </TouchableOpacity>
+
+
+
+                            </View>
+                        </View>
+
+                    </Modal>
                 </Content>
             </ImageBackground>
         </Container>

@@ -169,6 +169,22 @@ const ar = {
     'setLocation'               : 'حدد الموقع',
     'photos'                    : 'الصور',
     'camera'                    : 'الكاميرا',
+    'editAdds'                  : 'تعديل الاضافة',
+    'subscriptions'             : 'الاشتراكات',
+    'allSubInfo'                : 'جميع المعلومات الخاصه بالاشتراكات',
+    'subscription'              : 'اشتراك',
+    'payPackage'                : 'دفع الباقه المختارة',
+    'pay'                       : 'دفع',
+    'visa'                      : 'فيزا',
+    'sdad'                      : 'سداد',
+    'stc'                       : 'اس تي سي',
+    'bankTransfer'              : 'حوالة بنكية',
+    'bankAccounts'              : 'الحسابات البنكية',
+    'amountPayed'               : 'المبلغ المراد دفعه',
+    'bank'                      : "اسم البنك",
+    'accName'                   : 'رقم الحساب',
+    'bankTransferInfo'          : 'بيانات الحوالة بنكية',
+    'transImage'                : 'صورة الحوالة',
 };
 
 export default ar;
