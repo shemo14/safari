@@ -16,6 +16,7 @@ import subCategoriesByCat from './SubCategoriesByCatReducer';
 import myServices from './MyServicesReducer';
 import serviceDetailes from './ServiceDetailesReducer';
 import subCategories from './SubCategoriesReducer';
+import subscriptionDetails from './SubscriptionDetailsReducer';
 
 
 
@@ -36,4 +37,5 @@ export default combineReducers({
 	myServices,
 	serviceDetailes,
 	subCategories,
+	subscriptionDetails,
 });

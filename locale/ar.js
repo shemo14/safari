@@ -182,9 +182,14 @@ const ar = {
     'bankAccounts'              : 'الحسابات البنكية',
     'amountPayed'               : 'المبلغ المراد دفعه',
     'bank'                      : "اسم البنك",
-    'accName'                   : 'رقم الحساب',
+    'accNumb'                   : 'رقم الحساب',
+    'accName'                   : 'اسم الحساب',
     'bankTransferInfo'          : 'بيانات الحوالة بنكية',
     'transImage'                : 'صورة الحوالة',
+    'bankName'                  : 'اسم البنك المحول منه',
+    'amountPaid'                : 'المبغ المسدد',
+    'sendConfirm'               : 'تأكيد الارسال',
+    'subscribedSucc'            : 'تم الاشتراك في الباقة بنجاح',
 };
 
 export default ar;

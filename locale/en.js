@@ -182,9 +182,14 @@ const en = {
     'bankAccounts'              : 'Bank accounts',
     'amountPayed'               : 'Amount to be paid',
     'bank'                      : "Bank name",
-    'accName'                   : 'Account number',
+    'accNumb'                   : 'Account number',
+    'accName'                   : 'Account name',
     'bankTransferInfo'          : 'Bank transfer data',
     'transImage'                : 'Transaction imageُ',
+    'bankName'                  : 'Transferred bank name',
+    'amountPaid'                : 'The amount paid',
+    'sendConfirm'               : 'Confirm sending',
+    'subscribedSucc'            : 'The package has been subscribed successfully',
 };
 
 export default en;

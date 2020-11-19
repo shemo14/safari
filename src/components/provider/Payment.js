@@ -25,9 +25,11 @@ const isIOS  		= Platform.OS === 'ios';
 const IS_IPHONE_X 	= (height === 812 || height === 896) && Platform.OS === 'ios';
 
 
-function Payment({navigation}) {
+function Payment({navigation , route}) {
 
     const [activeId, setActiveId] = useState(0);
+    const price = route.params.price
+    const subscription_id = route.params.subscription_id
 
     return (
         <Container>
@@ -111,9 +113,17 @@ function Payment({navigation}) {
 
                             </TouchableOpacity>
 
-                            <TouchableOpacity onPress={() => navigation.navigate('bankAccounts')} style={[styles.blueBtn , styles.Width_100 , styles.marginBottom_25 , styles.marginTop_40]}>
-                                <Text style={[styles.textBold , styles.text_White , styles.textSize_16]}>{ i18n.t('pay') }</Text>
-                            </TouchableOpacity>
+                            {
+                                activeId === 3 ?
+                                    <TouchableOpacity onPress={() => navigation.navigate('bankAccounts' , {price , subscription_id})} style={[styles.blueBtn , styles.Width_100 , styles.marginBottom_25 , styles.marginTop_40]}>
+                                        <Text style={[styles.textBold , styles.text_White , styles.textSize_16]}>{ i18n.t('pay') }</Text>
+                                    </TouchableOpacity>
+                                    :
+                                    <TouchableOpacity  style={[styles.blueBtn , styles.Width_100 , styles.marginBottom_25 , styles.marginTop_40]}>
+                                        <Text style={[styles.textBold , styles.text_White , styles.textSize_16]}>{ i18n.t('pay') }</Text>
+                                    </TouchableOpacity>
+                            }
+
 
                         </ScrollView>
 
