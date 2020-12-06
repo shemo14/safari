@@ -22,6 +22,9 @@
     <list default="true" id="576527fe-727d-4d61-8581-aa2ff6ff066d" name="Default Changelist" comment="">
 <<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/images/DYU02R_XcAAY0o_.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/images/Dg4RomhW0AEi7oC.png" beforeDir="false" />
@@ -84,12 +87,19 @@
 >>>>>>> 6fb1ecffe7fe814107cc7ed4f2b4c00c9d7622d1
       <change beforePath="$PROJECT_DIR$/src/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/index.js" afterDir="false" />
 >>>>>>> ae39cff9f540792289ef9f5bf447517ec0c30d10
+>>>>>>> 9c3eedaff2c53f39d3368fc945c176eca290b285
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+=======
 <<<<<<< HEAD
   <component name="ComposerSettings">
     <execution />
@@ -196,6 +206,7 @@
         </entry>
       </file>
     </leaf>
+>>>>>>> 9c3eedaff2c53f39d3368fc945c176eca290b285
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -243,6 +254,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
+  <component name="ProjectId" id="1hlW6EDKRf3ZO7OnLHXbPuMSxS2" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+=======
 <<<<<<< HEAD
 =======
   <component name="IdeDocumentHistory">
@@ -371,12 +390,19 @@
       <pane id="Scope" />
     </panes>
 >>>>>>> 6fb1ecffe7fe814107cc7ed4f2b4c00c9d7622d1
+>>>>>>> 9c3eedaff2c53f39d3368fc945c176eca290b285
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.jscs" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.jscs" value="" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
@@ -393,7 +419,22 @@
       <recent name="$PROJECT_DIR$/locale" />
     </key>
   </component>
+<<<<<<< HEAD
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+=======
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+>>>>>>> 9c3eedaff2c53f39d3368fc945c176eca290b285
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -406,6 +447,18 @@
       <updated>1598786223982</updated>
       <workItem from="1598786226599" duration="2603000" />
       <workItem from="1599212435885" duration="281000" />
+<<<<<<< HEAD
+      <workItem from="1600109240423" duration="80376000" />
+      <workItem from="1600585992423" duration="639000" />
+      <workItem from="1601192470102" duration="592000" />
+      <workItem from="1601543371439" duration="1223000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+=======
       <workItem from="1600109240423" duration="85414000" />
       <workItem from="1600587793394" duration="7849000" />
       <workItem from="1600602360043" duration="8988000" />
@@ -903,4 +956,5 @@
 >>>>>>> 6fb1ecffe7fe814107cc7ed4f2b4c00c9d7622d1
 >>>>>>> ae39cff9f540792289ef9f5bf447517ec0c30d10
   </component>
+>>>>>>> 9c3eedaff2c53f39d3368fc945c176eca290b285
 </project>

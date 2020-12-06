@@ -11,16 +11,17 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistedStore } from './src/store';
 import './ReactotronConfig';
 import images from './src/consts/images'
-import { Notifications } from 'expo'
+import * as Notifications from 'expo-notifications';
 
 export default function App() {
 	const [isReady, setIsReady] = useState(false);
 
 	useEffect(() => {
 		if (Platform.OS === 'android') {
-			Notifications.createChannelAndroidAsync('orders', {
-				name: 'Chat messages',
-				sound: true,
+			Notifications.setNotificationChannelAsync('orders', {
+				name: 'E-mail notifications',
+				importance: Notifications.AndroidImportance.HIGH,
+				sound: true, // <- for Android 8.0+, see channelId property below
 			});
 		}
 

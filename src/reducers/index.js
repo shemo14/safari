@@ -12,6 +12,11 @@ import favorites from './FavoritesReducer';
 import banners 			from './BannersReducer';
 import providerDetails 	from './ProviderDetailsReducer';
 import search 	from './SearchReducer';
+import subCategoriesByCat from './SubCategoriesByCatReducer';
+import myServices from './MyServicesReducer';
+import serviceDetailes from './ServiceDetailesReducer';
+import subCategories from './SubCategoriesReducer';
+import subscriptionDetails from './SubscriptionDetailsReducer';
 
 
 
@@ -28,4 +33,9 @@ export default combineReducers({
 	banners,
 	providerDetails,
 	search,
+	subCategoriesByCat,
+	myServices,
+	serviceDetailes,
+	subCategories,
+	subscriptionDetails,
 });

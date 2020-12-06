@@ -8,7 +8,7 @@ export const userLogin = (phone, password, deviceId, lang , navigation) => {
 
         await axios.post(
             CONST.url + 'login',
-            {phone, password, lang, device_id: deviceId, type: 'user'})
+            {phone, password, lang, device_id: deviceId})
             .then(
                 response => handelLogin(dispatch, response.data , navigation)
             )
@@ -27,7 +27,7 @@ export const register = (data, navigation) => {
                 data: {
                     name			    : data.username,
                     phone			    : data.phone,
-                    type			    : 'user',
+					userType			: data.userType,
                     password		    : data.password,
                     lang 			    : data.lang,
                     device_id

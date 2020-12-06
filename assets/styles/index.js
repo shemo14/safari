@@ -29,7 +29,7 @@ const styles = ({
         color               : COLORS.mstarda
     },
     text_green : {
-        color               : COLORS.green
+        color               : '#305f72'
     },
     text_black : {
         color               : COLORS.black
@@ -384,8 +384,8 @@ const styles = ({
     bg_green : {
         backgroundColor     : COLORS.green
     },
-    bg_mstarda : {
-        backgroundColor     : COLORS.mstarda
+    bg_sky : {
+        backgroundColor     : COLORS.sky
     },
 
     bg_pink : {
@@ -1279,7 +1279,7 @@ const styles = ({
         borderColor           : '#ddd',
     },
     borderBlue : {
-        borderWidth           : 2,
+        borderWidth           : 1,
         borderColor           : COLORS.blue,
     },
     borderBottomGray : {

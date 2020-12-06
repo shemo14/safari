@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from "react";
+import React, { useState , useEffect , useRef} from "react";
 import { View, Text, Image, TouchableOpacity, ImageBackground, KeyboardAvoidingView, I18nManager, AsyncStorage, ActivityIndicator } from "react-native";
 import {Container, Content, Form, Input, Item, Label, Toast} from 'native-base'
 import styles from '../../assets/styles'
@@ -7,7 +7,17 @@ import COLORS from "../consts/colors";
 import {useSelector, useDispatch} from 'react-redux';
 import {userLogin} from '../actions';
 import * as Permissions from 'expo-permissions';
-import {Notifications} from 'expo'
+import * as Notifications from 'expo-notifications';
+import Constants from 'expo-constants';
+
+Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: false,
+        shouldSetBadge: false,
+    }),
+});
+
 function Login({navigation}) {
 
     const lang = useSelector(state => state.lang.lang);
@@ -22,31 +32,81 @@ function Login({navigation}) {
     const [passwordStatus, setPasswordStatus] = useState(0);
     const [spinner, setSpinner] = useState(false);
 
-    const getDeviceId = async () => {
-        const {status: existingStatus} = await Permissions.getAsync(
-            Permissions.NOTIFICATIONS
-        );
+    // const getDeviceId = async () => {
+    //     const {status: existingStatus} = await Permissions.getAsync(
+    //         Permissions.NOTIFICATIONS
+    //     );
+    //
+    //     let finalStatus = existingStatus;
+    //
+    //     if (existingStatus !== 'granted') {
+    //         const {status} = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+    //         finalStatus = status;
+    //     }
+    //
+    //     if (finalStatus !== 'granted') {
+    //         return;
+    //     }
+    //
+    //     const deviceId = await Notifications.getExpoPushTokenAsync();
+    //     setDeviceId(deviceId);
+    //
+    //     AsyncStorage.setItem('deviceID', deviceId);
+    // };
 
-        let finalStatus = existingStatus;
 
-        if (existingStatus !== 'granted') {
-            const {status} = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-            finalStatus = status;
-        }
-
-        if (finalStatus !== 'granted') {
-            return;
-        }
-
-        const deviceId = await Notifications.getExpoPushTokenAsync();
-        setDeviceId(deviceId);
-
-        AsyncStorage.setItem('deviceID', deviceId);
-    };
+    const [expoPushToken, setExpoPushToken] = useState('');
+    const [notification, setNotification] = useState(false);
+    const notificationListener = useRef();
+    const responseListener = useRef();
 
     useEffect(() => {
-        setTimeout(() => getDeviceId(), 2000);
+        registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+
+        notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+            setNotification(notification);
+        });
+
+        responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+            console.log(response);
+        });
+
+        return () => {
+            Notifications.removeNotificationSubscription(notificationListener);
+            Notifications.removeNotificationSubscription(responseListener);
+        };
     }, []);
+
+    async function registerForPushNotificationsAsync() {
+        let token;
+        if (Constants.isDevice) {
+            const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+            let finalStatus = existingStatus;
+            if (existingStatus !== 'granted') {
+                const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+                finalStatus = status;
+            }
+            if (finalStatus !== 'granted') {
+                alert('Failed to get push token for push notification!');
+                return;
+            }
+            token = (await Notifications.getExpoPushTokenAsync()).data;
+            console.log(token);
+        } else {
+            alert('Must use physical device for Push Notifications');
+        }
+
+        if (Platform.OS === 'android') {
+            Notifications.setNotificationChannelAsync('default', {
+                name: 'default',
+                importance: Notifications.AndroidImportance.MAX,
+                vibrationPattern: [0, 250, 250, 250],
+                lightColor: '#FF231F7C',
+            });
+        }
+
+        return token;
+    }
 
     function activeInput(type) {
         if (type === 'phone' || phone !== '') setPhoneStatus(1);
@@ -109,7 +169,7 @@ function Login({navigation}) {
 
         if (!err){
             setSpinner(true);
-            dispatch(userLogin(phone, password, deviceId , lang , navigation)).then(() => setSpinner(false));
+            dispatch(userLogin(phone, password, expoPushToken , lang , navigation)).then(() => setSpinner(false));
         }
     }
 

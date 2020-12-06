@@ -7,14 +7,17 @@ import {
 	ImageBackground,
 	KeyboardAvoidingView,
 	I18nManager,
-	ActivityIndicator
+	ActivityIndicator, Platform
 } from "react-native";
 import {Container, Content, Form, Input, Item, Label, Toast } from 'native-base'
 import styles from '../../assets/styles'
 import i18n from "../../locale/i18n";
 import COLORS from "../consts/colors";
+import RNPickerSelect from 'react-native-picker-select';
 import {useSelector, useDispatch} from 'react-redux';
 import {register} from '../actions';
+
+const IS_IOS =  Platform.OS === 'ios';
 
 function Register({navigation}) {
 	const lang      = useSelector(state => state.lang.lang);
@@ -24,6 +27,7 @@ function Register({navigation}) {
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPass, setConfirmPass] = useState('');
+    const [userType, setUserType] = useState('');
 
     const [usernameStatus, setUsernameStatus] 		= useState(0);
     const [phoneStatus, setPhoneStatus] 			= useState(0);
@@ -87,7 +91,7 @@ function Register({navigation}) {
 
 		if (!err){
 			setSpinner(true);
-		    const data = { username, phone, password, lang };
+		    const data = { username, phone , userType, password, lang };
 			dispatch(register(data, navigation)).then(() => setSpinner(false));
         }
 
@@ -143,6 +147,33 @@ function Register({navigation}) {
 									/>
 								</Item>
 							</View>
+
+                            <View style={[styles.height_50 ,styles.input ,(userType !== ''? styles.Active : styles.noActive), styles.flexCenter, styles.marginBottom_30 , styles.Width_100]}>
+                                <RNPickerSelect
+                                    style={{
+                                        inputAndroid: {
+                                            fontFamily: 'ArbFONTS',
+                                            color:COLORS.black
+                                        },
+                                        inputIOS: {
+                                            fontFamily: 'ArbFONTS',
+                                            color:COLORS.black,
+                                            alignSelf:'flex-start',
+                                        },
+                                    }}
+                                    placeholder={{
+                                        label: i18n.t('userType') ,
+                                    }}
+                                    onValueChange={(city) => setUserType(city)} client
+                                    items={[
+                                        { label: i18n.t('client'), value: 'user' },
+                                        { label: i18n.t('provider'), value: 'provider' },
+                                    ]}
+                                    Icon={() => {
+                                        return <Image source={require('../../assets/images/gray_arrow.png')} style={[styles.icon15 , {top:IS_IOS ? 5 : 20}]} resizeMode={'contain'} />
+                                    }}
+                                />
+                            </View>
 
 							<View style={[styles.position_R,  styles.height_70, styles.flexCenter, styles.marginBottom_5]}>
 								<Item floatingLabel style={[styles.item, styles.position_R ]}>

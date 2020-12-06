@@ -17,13 +17,13 @@ export const profile = (token) => {
     }
 };
 
-export const updateProfile = (lang , name , phone , avatar , token , navigation) => {
+export const updateProfile = (lang , name , phone , whatsapp , avatar , token , navigation) => {
     return (dispatch) => {
         axios({
             url: CONST.url + 'UpdateProfile',
             method      : 'POST',
             headers     : {Authorization: token },
-            data        : { lang ,name , phone , avatar }
+            data        : { lang ,name , phone , whatsapp , avatar }
         }).then(response => {
 
             if (response.data.success) {
