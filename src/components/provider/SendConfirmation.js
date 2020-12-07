@@ -54,9 +54,7 @@ function SendConfirmation({navigation}) {
 
                         <Image source={require('../../../assets/images/confirm.png')} style={[styles.width_120 , styles.height_150]} resizeMode={'contain'} />
                         <TouchableOpacity onPress={() =>
-                            navigation.navigate('drawer', {
-                                screen: 'home',
-                            })
+                            navigation.navigate('home' , {pathName:'sendConfirmation'})
                         } style={[styles.blueBtn , styles.Width_100 , styles.marginTop_25]}>
                             <Text style={[styles.textBold , styles.text_White , styles.textSize_14]}>{ i18n.t('goToHome') }</Text>
                         </TouchableOpacity>

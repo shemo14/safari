@@ -10,6 +10,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import {StoreService} from "../../actions";
 import * as Animatable from "react-native-animatable";
 import Modal from "react-native-modal";
+import * as FileSystem from 'expo-file-system';
+import { ImageBrowser } from 'expo-image-picker-multiple';
+
 
 const width		 	= Dimensions.get('window').width;
 const height	 	= Dimensions.get('window').height;
@@ -21,11 +24,11 @@ function AddService({navigation, route}) {
     let addition = route.params && route.params.addition ? route.params.addition : null;
     let coords   = route.params && route.params.coords ? route.params.coords : null;
 
-    const category_id               = route.params.category_id;
-    const sub_category_id           = route.params.subCategories;
-    const [photos, setPhotos]       = useState([]);
-    const [additions, setAdditions] = useState([]);
-    const [showModal, setShowModal] 		= useState(false);
+    const category_id                   = route.params.category_id;
+    const sub_category_id               = route.params.subCategories;
+    const [photos, setPhotos]           = useState([]);
+    const [additions, setAdditions]     = useState([]);
+    const [showModal, setShowModal] 	= useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     const lang  = useSelector(state => state.lang.lang);
@@ -66,12 +69,39 @@ function AddService({navigation, route}) {
 
     const addServ = () =>{
         setIsSubmitted(true);
-        dispatch(StoreService(lang , servName , servNameEn , whatsNum , price , desc , descEn, coords.latitude, coords.longitude ,sub_category_id , base64 ,additions,category_id , token , navigation)).then(() => setIsSubmitted(false))
+        convertToBase64().then(() => {
+            dispatch(StoreService(lang ,
+                                  servName ,
+                                  servNameEn ,
+                                  whatsNum ,
+                                  price ,
+                                  desc ,
+                                  descEn,
+                                  coords.latitude,
+                                  coords.longitude,
+                                  sub_category_id,
+                                  base64,
+                                  additions,
+                                  category_id,
+                                  token,
+                                  navigation
+            ))
+        })
     }
 
-    useEffect(() => {
-        setIsSubmitted(false)
-    }, [isSubmitted]);
+    async function convertToBase64(){
+        for (let i=0; i < photos.length; i++){
+            let imageURL = photos[i].image;
+            await FileSystem.readAsStringAsync(imageURL, { encoding: 'base64' }).then((base) => {
+                base64.push(base);
+            })
+        }
+    }
+
+    function navigateToImageBrowse(){
+        setShowModal(false)
+        navigation.navigate('imageBrowser', {routeName: 'addService'})
+    }
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
@@ -86,16 +116,28 @@ function AddService({navigation, route}) {
         return unsubscribe;
     }, [navigation, addition])
 
-    console.log('base64.length' , base64.length)
-
     useEffect(() => {
+        base64   = [];
+        setIsSubmitted(false)
         const unsubscribe = navigation.addListener('focus', () => {
-
+            setIsSubmitted(false)
             if (route.params?.photo && route.params.pathName === 'cam') {
                 let tempPhotos = photos;
                 tempPhotos.push({ id: tempPhotos.length, image: route.params.photo.uri});
-                base64.push(route.params.photo.base64);
                 setPhotos([...tempPhotos]);
+            }else if(route.params?.photos && route.params.pathName === 'imageBrowser'){
+                let callBackPhotos = route.params.photos ?? null;
+
+                if (callBackPhotos){
+                    let tempPhotos = photos;
+                    for (let i=0; i < callBackPhotos.length; i++){
+                        tempPhotos.push({ id: callBackPhotos.length+i+1, image: callBackPhotos[i].uri})
+                    }
+
+                    setPhotos([...tempPhotos])
+                }
+
+                console.log('callBackPhotos', callBackPhotos)
             }
         });
 
@@ -105,7 +147,6 @@ function AddService({navigation, route}) {
     function toggleModal() {
         setShowModal(!showModal)
     }
-
 
     function confirmDelete (i) {
         photos.splice(i, 1);
@@ -154,13 +195,14 @@ function AddService({navigation, route}) {
             let tempPhotos = photos;
             if(photos[i]){
                 tempPhotos[i] = { id: i, image: result.uri};
-                base64[i]=result.base64;
+                base64[i]     = result.base64;
             }else{
                 tempPhotos.push({ id: i, image: result.uri});
                 base64.push(result.base64);
             }
 
             setPhotos([...tempPhotos]);
+            setShowModal(false)
         }
     };
 
@@ -181,8 +223,6 @@ function AddService({navigation, route}) {
                     </Right>
                     <Body style={{ alignSelf: 'flex-start'}} />
                 </Header>
-
-
 
                 <Content contentContainerStyle={[styles.bgFullWidth]}>
 
@@ -337,21 +377,18 @@ function AddService({navigation, route}) {
                             borderTopRightRadius:30},styles.bg_White, styles.overHidden, styles.Width_100, styles.paddingVertical_10 , styles.paddingHorizontal_10]}>
                             <View style={[styles.overHidden, styles.Width_100 , styles.paddingHorizontal_25]}>
 
-                                <TouchableOpacity onPress={() => {_pickImage() ; setShowModal(false)}} style={[styles.marginBottom_10]}>
-                                    <Text style={[styles.text_black , styles.textBold , styles.textSize_16]}>{ i18n.t('photos') }</Text>
+                                <TouchableOpacity onPress={() => navigateToImageBrowse()} style={[styles.marginBottom_10]}>
+                                    <Text style={[styles.text_black , styles.textBold , styles.textSize_16, { alignSelf: 'flex-start' }]}>{ i18n.t('photos') }</Text>
                                 </TouchableOpacity>
 
                                 <View style={[styles.borderGray , styles.marginBottom_5]}/>
 
                                 <TouchableOpacity onPress={() => {navigation.navigate('cameraCapture' , {pathName:'addService'}) ; setShowModal(false)}} style={[styles.marginBottom_15]}>
-                                    <Text style={[styles.text_black , styles.textBold , styles.textSize_16]}>{ i18n.t('camera') }</Text>
+                                    <Text style={[styles.text_black , styles.textBold , styles.textSize_16, { alignSelf: 'flex-start' }]}>{ i18n.t('camera') }</Text>
                                 </TouchableOpacity>
-
-
 
                             </View>
                         </View>
-
                     </Modal>
                 </Content>
             </ImageBackground>

@@ -11,6 +11,7 @@ import {DeleteImg, UpdateService} from "../../actions";
 import * as Animatable from "react-native-animatable";
 import axios from "axios";
 import Modal from "react-native-modal";
+import * as FileSystem from "expo-file-system";
 
 const width		 	= Dimensions.get('window').width;
 const height	 	= Dimensions.get('window').height;
@@ -65,14 +66,29 @@ function EditService({navigation, route}) {
         if (type === 'descEn' && descEn === '') setDescEnStatus(0);
     }
     const dispatch = useDispatch();
+
     const addServ = () =>{
         setIsSubmitted(true);
-        dispatch(UpdateService(lang , service.id , servName , servNameEn , whatsNum , price , desc , descEn, location.latitude, location.longitude ,sub_category_id , base64 ,additions,category_id , token , navigation)).then()
-    }
+        convertToBase64().then(() => {
+            dispatch(UpdateService(lang ,
+                service.id ,
+                servName ,
+                servNameEn ,
+                whatsNum ,
+                price ,
+                desc ,
+                descEn,
+                location.latitude,
+                location.longitude ,
+                sub_category_id ,
+                base64 ,
+                additions,
+                category_id ,
+                token ,
+                navigation))
 
-    useEffect(() => {
-        setIsSubmitted(false)
-    }, [isSubmitted]);
+        })
+    }
 
     async function getLocation(){
         let endPoint = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
@@ -113,19 +129,54 @@ function EditService({navigation, route}) {
         return unsubscribe;
     }, [navigation, addition])
 
-    useEffect(() => {
-        const unsubscribe = navigation.addListener('focus', () => {
 
+
+    async function convertToBase64(){
+        for (let i=0; i < photos.length; i++){
+            if(photos[i].new){
+                let imageURL = photos[i].image;
+                await FileSystem.readAsStringAsync(imageURL, { encoding: 'base64' }).then((base) => {
+                    base64.push(base);
+                })
+            }
+        }
+    }
+
+
+    function navigateToImageBrowse(){
+        setShowModal(false)
+        navigation.navigate('imageBrowser', {routeName: 'editService'})
+    }
+
+    useEffect(() => {
+        base64   = [];
+        setIsSubmitted(false)
+        const unsubscribe = navigation.addListener('focus', () => {
+            setIsSubmitted(false)
             if (route.params?.photo && route.params.pathName === 'cam') {
                 let tempPhotos = photos;
                 tempPhotos.push({ id: tempPhotos.length, image: route.params.photo.uri , new: true});
-                base64.push(route.params.photo.base64);
+                // base64.push(route.params.photo.base64);
                 setPhotos([...tempPhotos]);
+            }else if(route.params?.photos && route.params.pathName === 'imageBrowser'){
+                let callBackPhotos = route.params.photos ?? null;
+
+                if (callBackPhotos){
+                    let tempPhotos = photos;
+                    for (let i=0; i < callBackPhotos.length; i++){
+                        tempPhotos.push({ id: callBackPhotos.length+i+1, image: callBackPhotos[i].uri , new: true})
+                    }
+
+                    setPhotos([...tempPhotos])
+                }
+
+                console.log('callBackPhotos', callBackPhotos)
             }
         });
 
         return unsubscribe;
     }, [navigation, route.params]);
+
 
     function toggleModal() {
         setShowModal(!showModal)
@@ -169,7 +220,6 @@ function EditService({navigation, route}) {
     const askPermissionsAsync = async () => {
         await Permissions.askAsync(Permissions.CAMERA);
         await Permissions.askAsync(Permissions.CAMERA_ROLL);
-
     };
 
     const _pickImage = async (i) => {
@@ -192,6 +242,8 @@ function EditService({navigation, route}) {
             }
 
             setPhotos([...tempPhotos]);
+            setShowModal(false)
+
             console.log('tempPhotos', photos , 'PhotosNew' ,tempPhotos);
             console.log('base64',base64)
         }
@@ -370,14 +422,14 @@ function EditService({navigation, route}) {
                             borderTopRightRadius:30},styles.bg_White, styles.overHidden, styles.Width_100, styles.paddingVertical_10 , styles.paddingHorizontal_10]}>
                             <View style={[styles.overHidden, styles.Width_100 , styles.paddingHorizontal_25]}>
 
-                                <TouchableOpacity onPress={() => {_pickImage() ; setShowModal(false)}} style={[styles.marginBottom_10]}>
-                                    <Text style={[styles.text_black , styles.textBold , styles.textSize_16]}>{ i18n.t('photos') }</Text>
+                                <TouchableOpacity onPress={() => navigateToImageBrowse()} style={[styles.marginBottom_10]}>
+                                    <Text style={[styles.text_black , styles.textBold , styles.textSize_16, styles.alignStart]}>{ i18n.t('photos') }</Text>
                                 </TouchableOpacity>
 
                                 <View style={[styles.borderGray , styles.marginBottom_5]}/>
 
                                 <TouchableOpacity onPress={() => {navigation.navigate('cameraCapture' , {pathName:'editService'}) ; setShowModal(false)}} style={[styles.marginBottom_15]}>
-                                    <Text style={[styles.text_black , styles.textBold , styles.textSize_16]}>{ i18n.t('camera') }</Text>
+                                    <Text style={[styles.text_black , styles.textBold , styles.textSize_16, styles.alignStart]}>{ i18n.t('camera') }</Text>
                                 </TouchableOpacity>
 
 

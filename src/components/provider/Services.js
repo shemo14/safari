@@ -85,7 +85,7 @@ function Services({navigation, route}) {
                     <ImageBackground source={{uri:image}} resizeMode={'cover'} style={{ height: 170, width: '100%', borderRadius: 10 }}>
                         <View style={[styles.overlay_black , styles.Width_100, { zIndex: 0, height: 200, position: 'absolute' }]} />
                         <View style={{ bottom: 0, position: 'absolute', height: 60, paddingHorizontal: 10 }}>
-                            <Text style={[ styles.textBold, styles.text_White, styles.textSize_14, styles.writngDir, styles.Width_100 ]}>{ name }</Text>
+                            <Text style={[ styles.textBold, styles.text_White, styles.textSize_14, styles.writngDir ]}>{ name.substr(0,15) }..</Text>
                             <Text style={[ styles.textBold, styles.text_orange, styles._alignText, styles.textRight ]}>{ price }  </Text>
                         </View>
                     </ImageBackground>

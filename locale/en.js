@@ -190,6 +190,8 @@ const en = {
     'amountPaid'                : 'The amount paid',
     'sendConfirm'               : 'Confirm sending',
     'subscribedSucc'            : 'The package has been subscribed successfully',
+    'done'                      : 'Done',
+    'back'                      : 'Back',
 };
 
 export default en;

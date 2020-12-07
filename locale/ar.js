@@ -190,6 +190,8 @@ const ar = {
     'amountPaid'                : 'المبغ المسدد',
     'sendConfirm'               : 'تأكيد الارسال',
     'subscribedSucc'            : 'تم الاشتراك في الباقة بنجاح',
+    'done'                      : 'تم',
+    'back'                      : 'الرجوع',
 };
 
 export default ar;
