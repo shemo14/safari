@@ -16,8 +16,9 @@ import styles from '../../../assets/styles'
 import i18n from "../../../locale/i18n";
 import COLORS from "../../consts/colors";
 import {useSelector, useDispatch} from 'react-redux';
-import {getSubscriptions} from '../../actions';
+import {getSubscriptions , freeSubscripe , getSubscriptionDetails} from '../../actions';
 import * as Animatable from "react-native-animatable";
+import subscriptions from "../../reducers/SubCategoriesReducer";
 
 const width	 		= Dimensions.get('window').width;
 const height 		= Dimensions.get('window').height;
@@ -25,26 +26,40 @@ const isIOS  		= Platform.OS === 'ios';
 const IS_IPHONE_X 	= (height === 812 || height === 896) && Platform.OS === 'ios';
 
 
-function Subscribe({navigation}) {
+function Subscribe({navigation , route}) {
 
-    const [activeId, setActiveId] = useState(null);
-    const [price, setPrice] = useState('');
-    const token 				= useSelector(state => state.auth.user ? state.auth.user.data.token : null);
-    const subscriptions 	    = useSelector(state => state.subscriptionDetails.subscriptions);
-    const subscriptionsLoader 	    = useSelector(state => state.subscriptionDetails.loader);
-    const dispatch = useDispatch();
+    const [activeId, setActiveId]       = useState(null);
+    const [price, setPrice]             = useState('');
+    const token 				        = useSelector(state => state.auth.user ? state.auth.user.data.token : null);
+    const lang                          = useSelector(state => state.lang.lang);
+    const subscriptions 	            = useSelector(state => state.subscriptions.subscriptions);
+    // const subscriptionsLoader 	        = useSelector(state => state.subscriptionDetails.loader);
+    // const subscriptionDetails 	        = useSelector(state => state.subscriptionDetails.subscriptionDetails);
+    // const subscriptionDetailsLoader 	= useSelector(state => state.subscriptionDetails.loader);
+    const dispatch                      = useDispatch();
 
     function fetchData() {
-        dispatch(getSubscriptions(token))
+       dispatch(getSubscriptions(token));
+    //   dispatch(getSubscriptionDetails(token. navigation, 'subscribe'));
     }
+
+
     useEffect(() => {
-        fetchData();
+       // fetchData();
         const unsubscribe = navigation.addListener('focus', () => {
             fetchData();
         });
 
         return unsubscribe;
-    }, [navigation , subscriptionsLoader]);
+    }, [navigation , route.params]);
+
+    function onSubscripe() {
+        if(activeId == 4){
+            dispatch(freeSubscripe(token, lang , activeId , navigation))
+        } else{
+            navigation.navigate('payment' , {price , subscription_id:activeId})
+        }
+    }
 
     return (
         <Container>
@@ -52,14 +67,20 @@ function Subscribe({navigation}) {
             <ImageBackground source={require('../../../assets/images/bg.png')} style={{ width, height: 200, alignSelf: 'center', flexGrow: 1 }} resizeMode={'cover'}>
                 <Header style={{ backgroundColor: 'transparent',  borderBottomWidth: 0 }} noShadow>
                     <Right style={{ flex: 0}}>
-                        <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 50, height: 50, justifyCenter: 'center', alignItems: 'center' }}>
-                            <Image source={require('../../../assets/images/white_back.png')} style={[ styles.transform , { width: 27, height: 27, marginTop: 10 }]} resizeMode={'contain'}/>
-                        </TouchableOpacity>
-                        <Text style={{ textAlign:  I18nManager.isRTL ? 'right' : 'left', color: '#fff', fontSize: 20, fontFamily: 'ArbFONTSBold', marginBottom: 5 }}>{ i18n.t('subscriptions') }</Text>
+                        {/*<TouchableOpacity onPress={() =>  navigation.navigate('drawer', {*/}
+                        {/*    screen: 'home',*/}
+                        {/*    // params: {pathName:'subscribe'}*/}
+                        {/*})} style={{ width: 50, height: 50, justifyCenter: 'center', alignItems: 'center' }}>*/}
+                        {/*    <Image source={require('../../../assets/images/white_back.png')} style={[ styles.transform , { width: 27, height: 27, marginTop: 10 }]} resizeMode={'contain'}/>*/}
+                        {/*</TouchableOpacity>*/}
+                        <Text style={{ textAlign:  I18nManager.isRTL ? 'right' : 'left', color: '#fff', fontSize: 20, fontFamily: 'ArbFONTSBold', marginBottom: 5, marginHorizontal: 15 }}>{ i18n.t('subscriptions') }</Text>
                     </Right>
                     <Body style={{ alignSelf: 'flex-start'}} />
                     <Left>
-                        <TouchableOpacity onPress={() => navigation.navigate('home' , {pathName:'subscribe'})}>
+                        <TouchableOpacity onPress={() => navigation.navigate('drawer', {
+                            screen: 'home',
+                            params: {pathName:'subscribe'}
+                        })}>
                             <Text style={[styles.textBold , { color: '#fff', fontSize: 18, marginBottom: 5 }]}>{ i18n.t('skip') }</Text>
                         </TouchableOpacity>
                     </Left>
@@ -107,7 +128,7 @@ function Subscribe({navigation}) {
                                                <Text style={[styles.textSize_12, styles.text_blue, styles.textBold]}>{sub.duration_word}</Text>
                                            </View>
                                            <View>
-                                               <Text style={[styles.textSize_17, styles.text_blue, styles.textBold]}>{sub.price}</Text>
+                                               <Text style={[styles.textSize_17, styles.text_blue, styles.textBold]}>{sub.price} { i18n.t('RS') }</Text>
                                            </View>
                                        </TouchableOpacity>
                                    )
@@ -118,7 +139,7 @@ function Subscribe({navigation}) {
 
                            {
                                activeId ?
-                                   <TouchableOpacity onPress={() => navigation.navigate('payment' , {price , subscription_id:activeId})} style={[styles.blueBtn , styles.Width_100 , styles.marginBottom_25 , styles.marginTop_40]}>
+                                   <TouchableOpacity onPress={() => onSubscripe()} style={[styles.blueBtn , styles.Width_100 , styles.marginBottom_25 , styles.marginTop_40]}>
                                        <Text style={[styles.textBold , styles.text_White , styles.textSize_16]}>{ i18n.t('subscription') }</Text>
                                    </TouchableOpacity>
                                    :

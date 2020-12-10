@@ -34,9 +34,9 @@ function SendConfirmation({navigation}) {
             <ImageBackground source={require('../../../assets/images/bg.png')} style={{ width, height: 200, alignSelf: 'center', flexGrow: 1 }} resizeMode={'cover'}>
                 <Header style={{ backgroundColor: 'transparent',  borderBottomWidth: 0 }} noShadow>
                     <Right style={{ flex: 0, marginLeft: 10 }}>
-                        <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 50, height: 50, justifyCenter: 'center', alignItems: 'center' }}>
-                            <Image source={require('../../../assets/images/white_back.png')} style={[ styles.transform , { width: 27, height: 27, marginTop: 10 }]} resizeMode={'contain'}/>
-                        </TouchableOpacity>
+                        {/*<TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 50, height: 50, justifyCenter: 'center', alignItems: 'center' }}>*/}
+                        {/*    <Image source={require('../../../assets/images/white_back.png')} style={[ styles.transform , { width: 27, height: 27, marginTop: 10 }]} resizeMode={'contain'}/>*/}
+                        {/*</TouchableOpacity>*/}
                         <Text style={{ textAlign:  I18nManager.isRTL ? 'right' : 'left', color: '#fff', fontSize: 20, fontFamily: 'ArbFONTSBold', marginBottom: 5 }}>{ i18n.t('sendConfirm') }</Text>
                     </Right>
                     <Body style={{ alignSelf: 'flex-start'}} />
@@ -53,8 +53,10 @@ function SendConfirmation({navigation}) {
                     <View style={[styles.flexCenter , { width: '100%', padding: 15, borderTopRightRadius: 50, backgroundColor: '#fff', minHeight: 110,paddingTop:120 }]}>
 
                         <Image source={require('../../../assets/images/confirm.png')} style={[styles.width_120 , styles.height_150]} resizeMode={'contain'} />
-                        <TouchableOpacity onPress={() =>
-                            navigation.navigate('home' , {pathName:'sendConfirmation'})
+                        <TouchableOpacity onPress={() => navigation.navigate('drawer', {
+                            screen: 'home',
+                            params: {pathName:'sendConfirmation'}
+                        })
                         } style={[styles.blueBtn , styles.Width_100 , styles.marginTop_25]}>
                             <Text style={[styles.textBold , styles.text_White , styles.textSize_14]}>{ i18n.t('goToHome') }</Text>
                         </TouchableOpacity>

@@ -2,7 +2,7 @@
   "expo": {
     "name": "سفاري",
     "slug": "safary",
-    "version": "1.0.9",
+    "version": "2.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -31,7 +31,7 @@
       "package": "com.safari.client",
       "userInterfaceStyle": "light",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 9,
+      "versionCode": 11,
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyBQu-aDY--uY14s4U3ok-XwwqhsnhLFe5Q"

@@ -192,6 +192,10 @@ const ar = {
     'subscribedSucc'            : 'تم الاشتراك في الباقة بنجاح',
     'done'                      : 'تم',
     'back'                      : 'الرجوع',
+    'subscribeExpire'           : 'مده انتهاء الاشتراك',
+    'mada'                      : 'مدي',
+    'successPayment'            : 'تم الدفع بنجاح',
+    'error'                     : 'خطأ',
 };
 
 export default ar;

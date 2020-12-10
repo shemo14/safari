@@ -192,6 +192,10 @@ const en = {
     'subscribedSucc'            : 'The package has been subscribed successfully',
     'done'                      : 'Done',
     'back'                      : 'Back',
+    'subscribeExpire'           : 'Subscribe expiration date',
+    'mada'                      : 'Mada',
+    'successPayment'            : 'Payment was successful',
+    'error'                     : 'Error',
 };
 
 export default en;

@@ -17,7 +17,7 @@ import myServices from './MyServicesReducer';
 import serviceDetailes from './ServiceDetailesReducer';
 import subCategories from './SubCategoriesReducer';
 import subscriptionDetails from './SubscriptionDetailsReducer';
-
+import subscriptions from './SubscriptionsReducer';
 
 
 export default combineReducers({
@@ -38,4 +38,5 @@ export default combineReducers({
 	serviceDetailes,
 	subCategories,
 	subscriptionDetails,
+	subscriptions
 });

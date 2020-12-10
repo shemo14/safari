@@ -30,7 +30,7 @@ const IS_IPHONE_X 	= (height === 812 || height === 896) && Platform.OS === 'ios'
 
 function BankTransfer({navigation , route}) {
 
-    const {subscription_id , bank} = route.params;
+    const {subscription_id , bank , price} = route.params;
     const lang   = useSelector(state => state.lang.lang);
     const token 				= useSelector(state => state.auth.user ? state.auth.user.data.token : null);
 
@@ -47,7 +47,7 @@ function BankTransfer({navigation , route}) {
     const [bankNameStatus, setBankNameStatus] = useState(0);
     const [accNameStatus, setAccNameStatus] = useState(0);
     const [accNumbStatus, setAccNumbStatus] = useState(0);
-    const [amountPaidStatus, setAmountPaidStatus] = useState(0);
+    const [amountPaidStatus, setAmountPaidStatus] = useState(1);
 
     const dispatch = useDispatch();
 
@@ -92,7 +92,7 @@ function BankTransfer({navigation , route}) {
     }
 
     function renderConfirm(){
-        if (bankName == '' || accName == ''  || accNumb == ''   || amountPaid == '' || base64 == '' ){
+        if (bankName == '' || accName == ''  || accNumb == ''  || base64 == '' ){
             return (
                 <View style={[styles.blueBtn , styles.Width_100 , {backgroundColor:'#999'}]}>
                     <Text style={[styles.textRegular , styles.text_White , styles.textSize_16]}>{ i18n.t('send') }</Text>
@@ -116,7 +116,7 @@ function BankTransfer({navigation , route}) {
 
     function onConfirm(){
         setIsSubmitted(false);
-        dispatch(uploadeTransfer(token ,lang , base64 , bankName , accName, accNumb , amountPaid , bank.id , subscription_id , navigation));
+        dispatch(uploadeTransfer(token ,lang , base64 , bankName , accName, accNumb , price , bank.id , subscription_id , navigation));
     }
 
     useEffect(() => {
@@ -234,7 +234,8 @@ function BankTransfer({navigation , route}) {
                                            onBlur={() => unActiveInput('amountPaid')}
                                            onFocus={() => activeInput('amountPaid')}
                                            keyboardType={'number-pad'}
-                                           value={amountPaid}
+                                           value={price.toString()}
+                                           disabled={true}
                                     />
                                 </Item>
                             </View>

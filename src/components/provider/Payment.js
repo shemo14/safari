@@ -27,7 +27,7 @@ const IS_IPHONE_X 	= (height === 812 || height === 896) && Platform.OS === 'ios'
 
 function Payment({navigation , route}) {
 
-    const [activeId, setActiveId] = useState(0);
+    const [activeId, setActiveId] = useState('master');
     const price = route.params.price
     const subscription_id = route.params.subscription_id
 
@@ -57,69 +57,69 @@ function Payment({navigation , route}) {
 
                         <ScrollView>
 
-                            <TouchableOpacity onPress={() => setActiveId(0)} style={[activeId === 0 ? styles.borderBlue : styles.borderGray , styles.Width_100 , styles.marginBottom_15  , styles.directionRow , {padding:15 , borderRadius:15 , borderStyle: activeId === 0 ?  'solid' : 'dashed'}]}>
+                            <TouchableOpacity onPress={() => setActiveId('master')} style={[activeId === 'master' ? styles.borderBlue : styles.borderGray , styles.Width_100 , styles.marginBottom_15  , styles.directionRow , {padding:15 , borderRadius:15 , borderStyle: activeId === 'master' ?  'solid' : 'dashed'}]}>
 
                                 {
-                                    activeId === 0 ?
+                                    activeId === 'master' ?
                                         <Image source={require('../../../assets/images/check.png')} style={[ styles.transform , { width: 30, height: 30 , position:'absolute' , right:0 , top:-1}]} resizeMode={'contain'}/>
                                         :
                                         null
                                 }
 
-                                <Image source={require('../../../assets/images/visa.png')} style={[{ width: 25, height: 25 , marginRight:10}]} resizeMode={'contain'}/>
-                                <Text style={[styles.textSize_13, activeId === 0 ? styles.text_blue : styles.text_green, styles.textBold]}>{ i18n.t('visa') }</Text>
+                                <Image source={require('../../../assets/images/MasterCard_Logo.svg.png')} style={[{ width: 25, height: 25 , marginRight:10}]} resizeMode={'contain'}/>
+                                <Text style={[styles.textSize_13, activeId === 'master' ? styles.text_blue : styles.text_green, styles.textBold]}>{ i18n.t('visa') }</Text>
 
                             </TouchableOpacity>
 
-                            <TouchableOpacity onPress={() => setActiveId(1)} style={[activeId === 1 ? styles.borderBlue : styles.borderGray , styles.Width_100 , styles.marginBottom_15  , styles.directionRow , {padding:15 , borderRadius:15 , borderStyle: activeId === 1 ?  'solid' : 'dashed'}]}>
+                            <TouchableOpacity onPress={() => setActiveId('mada')} style={[activeId === 'mada' ? styles.borderBlue : styles.borderGray , styles.Width_100 , styles.marginBottom_15  , styles.directionRow , {padding:15 , borderRadius:15 , borderStyle: activeId === 'mada' ?  'solid' : 'dashed'}]}>
 
                                 {
-                                    activeId === 1 ?
+                                    activeId === 'mada' ?
                                         <Image source={require('../../../assets/images/check.png')} style={[ styles.transform , { width: 30, height: 30 , position:'absolute' , right:0 , top:-1}]} resizeMode={'contain'}/>
                                         :
                                         null
                                 }
 
-                                <Image source={require('../../../assets/images/sadad.png')} style={[{ width: 25, height: 25 , marginRight:10}]} resizeMode={'contain'}/>
-                                <Text style={[styles.textSize_13, activeId === 1 ? styles.text_blue : styles.text_green, styles.textBold]}>{ i18n.t('sdad') }</Text>
+                                <Image source={require('../../../assets/images/mada.png')} style={[{ width: 25, height: 25 , marginRight:10}]} resizeMode={'contain'}/>
+                                <Text style={[styles.textSize_13, activeId === 'mada' ? styles.text_blue : styles.text_green, styles.textBold]}>{ i18n.t('mada') }</Text>
 
                             </TouchableOpacity>
 
-                            <TouchableOpacity onPress={() => setActiveId(2)} style={[activeId === 2 ? styles.borderBlue : styles.borderGray , styles.Width_100 , styles.marginBottom_15  , styles.directionRow , {padding:15 , borderRadius:15 , borderStyle: activeId === 2 ?  'solid' : 'dashed'}]}>
+                            {/*<TouchableOpacity onPress={() => setActiveId(2)} style={[activeId === 2 ? styles.borderBlue : styles.borderGray , styles.Width_100 , styles.marginBottom_15  , styles.directionRow , {padding:15 , borderRadius:15 , borderStyle: activeId === 2 ?  'solid' : 'dashed'}]}>*/}
+
+                            {/*    {*/}
+                            {/*        activeId === 2 ?*/}
+                            {/*            <Image source={require('../../../assets/images/check.png')} style={[ styles.transform , { width: 30, height: 30 , position:'absolute' , right:0 , top:-1}]} resizeMode={'contain'}/>*/}
+                            {/*            :*/}
+                            {/*            null*/}
+                            {/*    }*/}
+
+                            {/*    <Image source={require('../../../assets/images/stc.png')} style={[{ width: 25, height: 25 , marginRight:10}]} resizeMode={'contain'}/>*/}
+                            {/*    <Text style={[styles.textSize_13, activeId === 2 ? styles.text_blue : styles.text_green, styles.textBold]}>{ i18n.t('stc') }</Text>*/}
+
+                            {/*</TouchableOpacity>*/}
+
+                            <TouchableOpacity onPress={() => setActiveId('bankTransfer')} style={[activeId === 'bankTransfer' ? styles.borderBlue : styles.borderGray , styles.Width_100 , styles.marginBottom_15  , styles.directionRow , {padding:15 , borderRadius:15 , borderStyle: activeId === 'bankTransfer' ?  'solid' : 'dashed'}]}>
 
                                 {
-                                    activeId === 2 ?
-                                        <Image source={require('../../../assets/images/check.png')} style={[ styles.transform , { width: 30, height: 30 , position:'absolute' , right:0 , top:-1}]} resizeMode={'contain'}/>
-                                        :
-                                        null
-                                }
-
-                                <Image source={require('../../../assets/images/stc.png')} style={[{ width: 25, height: 25 , marginRight:10}]} resizeMode={'contain'}/>
-                                <Text style={[styles.textSize_13, activeId === 2 ? styles.text_blue : styles.text_green, styles.textBold]}>{ i18n.t('stc') }</Text>
-
-                            </TouchableOpacity>
-
-                            <TouchableOpacity onPress={() => setActiveId(3)} style={[activeId === 3 ? styles.borderBlue : styles.borderGray , styles.Width_100 , styles.marginBottom_15  , styles.directionRow , {padding:15 , borderRadius:15 , borderStyle: activeId === 3 ?  'solid' : 'dashed'}]}>
-
-                                {
-                                    activeId === 3 ?
+                                    activeId === 'bankTransfer' ?
                                         <Image source={require('../../../assets/images/check.png')} style={[ styles.transform , { width: 30, height: 30 , position:'absolute' , right:0 , top:-1}]} resizeMode={'contain'}/>
                                         :
                                         null
                                 }
 
                                 <Image source={require('../../../assets/images/cib.png')} style={[{ width: 25, height: 25 , marginRight:10}]} resizeMode={'contain'}/>
-                                <Text style={[styles.textSize_13, activeId === 3 ? styles.text_blue : styles.text_green, styles.textBold]}>{ i18n.t('bankTransfer') }</Text>
+                                <Text style={[styles.textSize_13, activeId === 'bankTransfer' ? styles.text_blue : styles.text_green, styles.textBold]}>{ i18n.t('bankTransfer') }</Text>
 
                             </TouchableOpacity>
 
                             {
-                                activeId === 3 ?
+                                activeId === 'bankTransfer' ?
                                     <TouchableOpacity onPress={() => navigation.navigate('bankAccounts' , {price , subscription_id})} style={[styles.blueBtn , styles.Width_100 , styles.marginBottom_25 , styles.marginTop_40]}>
                                         <Text style={[styles.textBold , styles.text_White , styles.textSize_16]}>{ i18n.t('pay') }</Text>
                                     </TouchableOpacity>
                                     :
-                                    <TouchableOpacity  style={[styles.blueBtn , styles.Width_100 , styles.marginBottom_25 , styles.marginTop_40]}>
+                                    <TouchableOpacity onPress={() => navigation.navigate('payView', {activeId , subscription_id})} style={[styles.blueBtn , styles.Width_100 , styles.marginBottom_25 , styles.marginTop_40]}>
                                         <Text style={[styles.textBold , styles.text_White , styles.textSize_16]}>{ i18n.t('pay') }</Text>
                                     </TouchableOpacity>
                             }
