@@ -92,19 +92,21 @@ function BankTransfer({navigation , route}) {
     }
 
     function renderConfirm(){
-        if (bankName == '' || accName == ''  || accNumb == ''  || base64 == '' ){
-            return (
-                <View style={[styles.blueBtn , styles.Width_100 , {backgroundColor:'#999'}]}>
-                    <Text style={[styles.textRegular , styles.text_White , styles.textSize_16]}>{ i18n.t('send') }</Text>
-                </View>
-            );
-        }
+
         if (isSubmitted){
             return(
                 <View style={[{ justifyContent: 'center', alignItems: 'center' } , styles.marginTop_25]}>
                     <ActivityIndicator size="large" color={COLORS.blue} style={{ alignSelf: 'center' }} />
                 </View>
             )
+        }
+
+        if (bankName == '' || accName == ''  || accNumb == ''  || base64 == '' ){
+            return (
+                <View style={[styles.blueBtn , styles.Width_100 , {backgroundColor:'#999'}]}>
+                    <Text style={[styles.textRegular , styles.text_White , styles.textSize_16]}>{ i18n.t('send') }</Text>
+                </View>
+            );
         }
 
         return (
@@ -115,7 +117,7 @@ function BankTransfer({navigation , route}) {
     }
 
     function onConfirm(){
-        setIsSubmitted(false);
+        setIsSubmitted(true);
         dispatch(uploadeTransfer(token ,lang , base64 , bankName , accName, accNumb , price , bank.id , subscription_id , navigation));
     }
 

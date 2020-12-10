@@ -16,7 +16,7 @@ import styles from '../../../assets/styles'
 import i18n from "../../../locale/i18n";
 import COLORS from "../../consts/colors";
 import {useSelector, useDispatch} from 'react-redux';
-import {getSubscriptions , freeSubscripe , getSubscriptionDetails} from '../../actions';
+import {getSubscriptions , freeSubscripe } from '../../actions';
 import * as Animatable from "react-native-animatable";
 import subscriptions from "../../reducers/SubCategoriesReducer";
 
@@ -33,14 +33,11 @@ function Subscribe({navigation , route}) {
     const token 				        = useSelector(state => state.auth.user ? state.auth.user.data.token : null);
     const lang                          = useSelector(state => state.lang.lang);
     const subscriptions 	            = useSelector(state => state.subscriptions.subscriptions);
-    // const subscriptionsLoader 	        = useSelector(state => state.subscriptionDetails.loader);
-    // const subscriptionDetails 	        = useSelector(state => state.subscriptionDetails.subscriptionDetails);
-    // const subscriptionDetailsLoader 	= useSelector(state => state.subscriptionDetails.loader);
+    const subscriptionsLoader 	        = useSelector(state => state.subscriptionDetails.loader);
     const dispatch                      = useDispatch();
 
     function fetchData() {
        dispatch(getSubscriptions(token));
-    //   dispatch(getSubscriptionDetails(token. navigation, 'subscribe'));
     }
 
 
