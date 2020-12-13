@@ -99,7 +99,7 @@ function Notifications({navigation, route}) {
                             <Text style={[ styles.textBold, styles.text_gray, styles.textSize_12]}>{ date }</Text>
                         </View>
                         <Text style={[ styles.textBold, styles.text_gray, styles.textSize_13, styles.alignStart]}>{ body }</Text>
-                        <Text style={[ styles.textBold, styles.text_orange , styles.textDecoration, styles.textSize_13 , styles.alignStart]}>{ i18n.t('seeOffer') }</Text>
+                        {/*<Text style={[ styles.textBold, styles.text_orange , styles.textDecoration, styles.textSize_13 , styles.alignStart]}>{ i18n.t('seeOffer') }</Text>*/}
                     </View>
                 </TouchableOpacity>
             </View>
